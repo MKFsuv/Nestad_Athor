@@ -15,32 +15,27 @@ namespace Nestad_Athor
         //Variables for each type of enemy
         public float x;
         public float y;
+        public float chaseSpeed;
 
-        public CancerousCell(float initialX, float initialY)
+        public CancerousCell(float initialX, float initialY, float initialchaseSpeed)
         {
             x = initialX;
             y = initialY;
+            chaseSpeed = initialchaseSpeed;
         }
 
         public int health = 100;
         public int maxHealth = 100;
-        public float chaseSpeed = 200;
         public bool CanDash = true;
         public float dashCooldown = 4;
         public float dashTimer = 2;
         public float dashSpeed = 2000;
 
+        public int[] CancerousCells = new int[3];
 
 
 
-
-        public static void BadGuyTakings()
-        {
-            CancerousCell cancerousCell = new CancerousCell(1200, 400);
-            CancerousCell cancerousCell2 = new CancerousCell(1000, 400);
-            CancerousCell cancerousCell3 = new CancerousCell(1400, 400);
-        }
-
+        //Code that makes the enemy move and other shi
         public static void CancerousCellMovement(GameTime gameTime, Player player, CancerousCell cancerousCell)
         {
             float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;

@@ -13,9 +13,9 @@ namespace Nestad_Athor
 
 
         Player player = new Player();
-        CancerousCell cancerousCell = new CancerousCell(1200, 400);
-        CancerousCell cancerousCell2 = new CancerousCell(1000, 400);
-        CancerousCell cancerousCell3 = new CancerousCell(1400, 400);
+        CancerousCell cancerousCell = new CancerousCell(1200, 400, 200);
+        CancerousCell cancerousCell2 = new CancerousCell(1000, 400, 200);
+        CancerousCell cancerousCell3 = new CancerousCell(1400, 400, 600);
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
 
@@ -24,6 +24,7 @@ namespace Nestad_Athor
         Texture2D playerTexture;
         Texture2D cancerousCellTexture;
         Texture2D Door;
+        Texture2D loadingScreenTexture;
         Texture2D PlayerAttackTexture;
         Texture2D PlayerHitboxTexture;
 
@@ -65,6 +66,8 @@ namespace Nestad_Athor
             PlayerAttackTexture = new Texture2D(GraphicsDevice, 1, 1);
             PlayerAttackTexture.SetData(new[] { Color.White });
 
+            loadingScreenTexture = Content.Load<Texture2D>("LoadingScreen//LoadingScreen");
+
 
 
             spriteBatch = new SpriteBatch(GraphicsDevice);
@@ -86,6 +89,10 @@ namespace Nestad_Athor
             else if (keyboardState.IsKeyDown(Keys.NumPad2))
             {
                 Level = 2;
+            }
+            else if (keyboardState.IsKeyDown(Keys.NumPad0))
+            {
+                Level = 0;
             }
 
             // Call the appropriate level update method based on the current level
@@ -113,6 +120,9 @@ namespace Nestad_Athor
             // Call the appropriate level draw method based on the current level
             switch (Level)
             {
+                case 0:
+                    LoadingScreen.LoadingScreenDrawn(this, spriteBatch, loadingScreenTexture);
+                    break;
                 case 1:
                     Level1.Level1Drawn(this, spriteBatch, playerTexture, LevelWalls, player, cancerousCell, cancerousCellTexture, PlayerAttackTexture);
                     break;

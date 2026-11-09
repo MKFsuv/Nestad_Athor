@@ -35,7 +35,7 @@ namespace Nestad_Athor
         }
 
         public static void Level2Drawn(Game1 game, SpriteBatch spriteBatch, Texture2D playerTexture, Texture2D playerAttackTexture, Texture2D LevelWalls, 
-           Player player, CancerousCell cancerousCell, CancerousCell cancerousCell2,
+           Player player, CancerousCell cancerousCell2, CancerousCell cancerousCell3,
            Texture2D cancerousCellTexture, Texture2D playerHitboxTexture)
         {
 
@@ -55,8 +55,8 @@ namespace Nestad_Athor
 
             spriteBatch.End();
 
-            CancerousCell.CancerousCellDrawn(game, spriteBatch, cancerousCellTexture, cancerousCell);
             CancerousCell.CancerousCellDrawn(game, spriteBatch, cancerousCellTexture, cancerousCell2);
+            CancerousCell.CancerousCellDrawn(game, spriteBatch, cancerousCellTexture, cancerousCell3);
 
             Player.PlayerDrawn(game, spriteBatch, playerTexture, playerAttackTexture, player);
         }
