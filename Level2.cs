@@ -10,19 +10,33 @@ namespace Nestad_Athor
 {
     public class Level2
     {
-        public static void Level2Update(GameTime gameTime, Player player, CancerousCell cancerousCell)
+        public static void Level2Update(Game1 game, GameTime gameTime, Player player, CancerousCell cancerousCell)
         {
             Rectangle Level2Wall1 = new Rectangle(0, 0, 1800, 20);
             Rectangle Level2Wall2 = new Rectangle(0, 0, 20, 1080);
             Rectangle Level2Wall3 = new Rectangle(1780, 0, 20, 1080);
             Rectangle Level2Wall4 = new Rectangle(0, 1060, 1800, 20);
+
+            Rectangle Door = new Rectangle(0, 270, 21, 540);
+
+            Rectangle PlayerHitbox = new Rectangle((int)player.x, (int)player.y, 50, 50);
+
+            if (PlayerHitbox.Intersects(Door))
+            {
+                game.Level = 1;
+
+                player.x = 1600;
+            }
+
+
             CancerousCell.CancerousCellMovement1(gameTime, player, cancerousCell);
             CancerousCell.CancerousCellMovement2(gameTime, player, cancerousCell);
             Player.PlayerMovement(gameTime, player);
         }
 
-        public static void Level2Drawn(Game1 game, SpriteBatch spriteBatch, Texture2D playerTexture, Texture2D LevelWalls, Player player, CancerousCell cancerousCell,
-           Texture2D cancerousCellTexture)
+        public static void Level2Drawn(Game1 game, SpriteBatch spriteBatch, Texture2D playerTexture, Texture2D playerAttackTexture, Texture2D LevelWalls, 
+           Player player, CancerousCell cancerousCell,
+           Texture2D cancerousCellTexture, Texture2D playerHitboxTexture)
         {
 
             
@@ -35,12 +49,16 @@ namespace Nestad_Athor
             spriteBatch.Draw(LevelWalls, new Rectangle(1780, 0, 20, 1080), Color.Green);
             spriteBatch.Draw(LevelWalls, new Rectangle(0, 1060, 1800, 20), Color.Green);
 
+
+            //Door
+            spriteBatch.Draw(LevelWalls, new Rectangle(0, 270, 21, 540), Color.Red);
+
             spriteBatch.End();
 
             CancerousCell.CancerousCellDrawn2(game, spriteBatch, cancerousCellTexture, cancerousCell);
-            CancerousCell.CancerousCellDrawn(game, spriteBatch, cancerousCellTexture, cancerousCell);
+            CancerousCell.CancerousCellDrawn1(game, spriteBatch, cancerousCellTexture, cancerousCell);
 
-            Player.PlayerDrawn(game, spriteBatch, playerTexture, player);
+            Player.PlayerDrawn(game, spriteBatch, playerTexture, playerAttackTexture, player);
         }
     }
 }

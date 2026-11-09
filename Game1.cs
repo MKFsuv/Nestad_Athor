@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
 
+
 namespace Nestad_Athor
 {
     public class Game1 : Game
@@ -21,6 +22,8 @@ namespace Nestad_Athor
         Texture2D playerTexture;
         Texture2D cancerousCellTexture;
         Texture2D Door;
+        Texture2D PlayerAttackTexture;
+        Texture2D PlayerHitboxTexture;
 
 
         public Game1()
@@ -57,6 +60,9 @@ namespace Nestad_Athor
             Door = new Texture2D(GraphicsDevice, 1, 1);
             Door.SetData(new[] { Color.White });
 
+            PlayerAttackTexture = new Texture2D(GraphicsDevice, 1, 1);
+            PlayerAttackTexture.SetData(new[] { Color.White });
+
 
 
             spriteBatch = new SpriteBatch(GraphicsDevice);
@@ -66,6 +72,7 @@ namespace Nestad_Athor
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
+
 
             KeyboardState keyboardState = Keyboard.GetState();
 
@@ -83,10 +90,10 @@ namespace Nestad_Athor
             switch (Level)
             {
                 case 1:
-                    Level1.Level1Update(gameTime, player, cancerousCell);
+                    Level1.Level1Update(this, gameTime, player, cancerousCell);
                     break;
                 case 2:
-                    Level2.Level2Update(gameTime, player, cancerousCell);
+                    Level2.Level2Update(this, gameTime, player, cancerousCell);
                     break;
             }
 
@@ -98,17 +105,20 @@ namespace Nestad_Athor
         {
             GraphicsDevice.Clear(Color.Wheat);
 
+            
+
+
             // Call the appropriate level draw method based on the current level
             switch (Level)
             {
                 case 1:
-                    Level1.Level1Drawn(this, spriteBatch, playerTexture, LevelWalls, player, cancerousCell, cancerousCellTexture);
+                    Level1.Level1Drawn(this, spriteBatch, playerTexture, LevelWalls, player, cancerousCell, cancerousCellTexture, PlayerAttackTexture);
                     break;
                 case 2:
-                    Level2.Level2Drawn(this, spriteBatch, playerTexture, LevelWalls, player, cancerousCell, cancerousCellTexture);
+                    Level2.Level2Drawn(this, spriteBatch, playerTexture, PlayerAttackTexture, LevelWalls, player, cancerousCell, cancerousCellTexture, 
+                        PlayerHitboxTexture);
                     break;
             }
-
 
 
             base.Draw(gameTime);
