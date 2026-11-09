@@ -13,7 +13,9 @@ namespace Nestad_Athor
 
 
         Player player = new Player();
-        CancerousCell cancerousCell = new CancerousCell();
+        CancerousCell cancerousCell = new CancerousCell(1200, 400);
+        CancerousCell cancerousCell2 = new CancerousCell(1000, 400);
+        CancerousCell cancerousCell3 = new CancerousCell(1400, 400);
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
 
@@ -93,7 +95,7 @@ namespace Nestad_Athor
                     Level1.Level1Update(this, gameTime, player, cancerousCell);
                     break;
                 case 2:
-                    Level2.Level2Update(this, gameTime, player, cancerousCell);
+                    Level2.Level2Update(this, gameTime, player, cancerousCell2, cancerousCell3);
                     break;
             }
 
@@ -115,7 +117,7 @@ namespace Nestad_Athor
                     Level1.Level1Drawn(this, spriteBatch, playerTexture, LevelWalls, player, cancerousCell, cancerousCellTexture, PlayerAttackTexture);
                     break;
                 case 2:
-                    Level2.Level2Drawn(this, spriteBatch, playerTexture, PlayerAttackTexture, LevelWalls, player, cancerousCell, cancerousCellTexture, 
+                    Level2.Level2Drawn(this, spriteBatch, playerTexture, PlayerAttackTexture, LevelWalls, player, cancerousCell2, cancerousCell3, cancerousCellTexture, 
                         PlayerHitboxTexture);
                     break;
             }
