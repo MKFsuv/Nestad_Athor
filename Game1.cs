@@ -15,7 +15,7 @@ namespace Nestad_Athor
         Player player = new Player();
         CancerousCell cancerousCell = new CancerousCell(1200, 400, 200);
         CancerousCell cancerousCell2 = new CancerousCell(1000, 400, 200);
-        CancerousCell cancerousCell3 = new CancerousCell(1400, 400, 600);
+        CancerousCell cancerousCell3 = new CancerousCell(1400, 400, 300);
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
 
