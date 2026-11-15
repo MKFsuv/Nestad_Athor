@@ -10,6 +10,9 @@ namespace Nestad_Athor
 {
     public class Level2
     {
+
+
+
         public static void Level2Update(Game1 game, GameTime gameTime, Player player, CancerousCell cancerousCell, CancerousCell cancerousCell2)
         {
             Rectangle Level2Wall1 = new Rectangle(0, 0, 1800, 20);
@@ -18,6 +21,7 @@ namespace Nestad_Athor
             Rectangle Level2Wall4 = new Rectangle(0, 1060, 1800, 20);
 
             Rectangle Door = new Rectangle(0, 270, 21, 540);
+            Rectangle Door2 = new Rectangle(550, 0, 900, 21);
 
             Rectangle PlayerHitbox = new Rectangle((int)player.x, (int)player.y, 50, 50);
 
@@ -27,11 +31,16 @@ namespace Nestad_Athor
 
                 player.x = 1600;
             }
+            else if (PlayerHitbox.Intersects(Door2))
+            {
+                game.Level = 3;
+                player.y = 1000;
+            }
 
 
             CancerousCell.CancerousCellMovement(gameTime, player, cancerousCell);
             CancerousCell.CancerousCellMovement(gameTime, player, cancerousCell2);
-            Player.PlayerMovement(gameTime, player);
+            player.PlayerMovement(gameTime, player, cancerousCell);
         }
 
         public static void Level2Drawn(Game1 game, SpriteBatch spriteBatch, Texture2D playerTexture, Texture2D playerAttackTexture, Texture2D LevelWalls, 
@@ -43,22 +52,23 @@ namespace Nestad_Athor
             
             spriteBatch.Begin();
 
-            spriteBatch.Draw(LevelWalls, new Rectangle(0, 0, 1800, 1080), Color.DarkBlue);
-            spriteBatch.Draw(LevelWalls, new Rectangle(0, 0, 1800, 20), Color.Green);
-            spriteBatch.Draw(LevelWalls, new Rectangle(0, 0, 20, 1080), Color.Green);
-            spriteBatch.Draw(LevelWalls, new Rectangle(1780, 0, 20, 1080), Color.Green);
-            spriteBatch.Draw(LevelWalls, new Rectangle(0, 1060, 1800, 20), Color.Green);
+            spriteBatch.Draw(LevelWalls, new Rectangle(0, 0, 1800, 1080), Color.White);
+            spriteBatch.Draw(LevelWalls, new Rectangle(0, 0, 1800, 20), Color.DarkRed);
+            spriteBatch.Draw(LevelWalls, new Rectangle(0, 0, 20, 1080), Color.DarkRed);
+            spriteBatch.Draw(LevelWalls, new Rectangle(1780, 0, 20, 1080), Color.DarkRed);
+            spriteBatch.Draw(LevelWalls, new Rectangle(0, 1060, 1800, 20), Color.DarkRed);
 
 
             //Door
-            spriteBatch.Draw(LevelWalls, new Rectangle(0, 270, 21, 540), Color.Red);
+            spriteBatch.Draw(LevelWalls, new Rectangle(0, 270, 21, 540), Color.MediumVioletRed);
+            spriteBatch.Draw(LevelWalls, new Rectangle(550, 0, 900, 21), Color.MediumVioletRed);
 
             spriteBatch.End();
 
             CancerousCell.CancerousCellDrawn(game, spriteBatch, cancerousCellTexture, cancerousCell2);
             CancerousCell.CancerousCellDrawn(game, spriteBatch, cancerousCellTexture, cancerousCell3);
 
-            Player.PlayerDrawn(game, spriteBatch, playerTexture, playerAttackTexture, player);
+            player.PlayerDrawn(game, spriteBatch, playerTexture, game.HealthBarTexture, playerAttackTexture, player);
         }
     }
 }

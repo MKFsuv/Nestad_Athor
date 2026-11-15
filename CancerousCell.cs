@@ -25,62 +25,85 @@ namespace Nestad_Athor
         }
 
         public int health = 100;
-        public int maxHealth = 100;
         public bool CanDash = true;
         public float dashCooldown = 4;
         public float dashTimer = 2;
         public float dashSpeed = 2000;
+        public bool Alive = true;
 
-        public int[] CancerousCells = new int[3];
 
 
 
         //Code that makes the enemy move and other shi
         public static void CancerousCellMovement(GameTime gameTime, Player player, CancerousCell cancerousCell)
         {
-            float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
-
-
-            float dx = player.x - cancerousCell.x;
-            float dy = player.y - cancerousCell.y;
-
-            float distance = MathF.Sqrt(dx * dx + dy * dy);
-
-            //Movement of ememy
-            if (distance > 0)
+            if (cancerousCell.Alive)
             {
-                cancerousCell.x += (dx / distance) * cancerousCell.chaseSpeed * deltaTime;
-                cancerousCell.y += (dy / distance) * cancerousCell.chaseSpeed * deltaTime;
-            }
+                Rectangle cancerousCellHitbox = new Rectangle((int)cancerousCell.x, (int)cancerousCell.y, 100, 100);
 
-            // Dash cooldown
-            if (!cancerousCell.CanDash)
-            {
-                cancerousCell.dashTimer += deltaTime;
-
-                if (cancerousCell.dashTimer >= cancerousCell.dashCooldown)
+                if (cancerousCell.health <= 0)
                 {
-                    cancerousCell.CanDash = true;
-                    cancerousCell.dashTimer = 0f;
+                    cancerousCell.Alive = false;
+                }
+
+                float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
+
+                if (player.IsAttacking)
+                {
+                    if (player.AttackHitbox.Intersects(cancerousCellHitbox))
+                    {
+                        cancerousCell.health -= 5;
+                    }
+                }
+
+
+                float dx = player.x - cancerousCell.x;
+                float dy = player.y - cancerousCell.y;
+
+                float distance = MathF.Sqrt(dx * dx + dy * dy);
+
+                //Movement of ememy
+                if (distance > 0)
+                {
+                    cancerousCell.x += (dx / distance) * cancerousCell.chaseSpeed * deltaTime;
+                    cancerousCell.y += (dy / distance) * cancerousCell.chaseSpeed * deltaTime;
+                }
+
+                // Dash cooldown
+                if (!cancerousCell.CanDash)
+                {
+                    cancerousCell.dashTimer += deltaTime;
+
+                    if (cancerousCell.dashTimer >= cancerousCell.dashCooldown)
+                    {
+                        cancerousCell.CanDash = true;
+                        cancerousCell.dashTimer = 0f;
+                    }
+                }
+
+                // Dash attack
+                if (cancerousCell.CanDash && distance <= 200 && distance > 0)
+                {
+                    cancerousCell.x += (dx / distance) * cancerousCell.dashSpeed * deltaTime;
+                    cancerousCell.y += (dy / distance) * cancerousCell.dashSpeed * deltaTime;
+
+                    cancerousCell.CanDash = false;
                 }
             }
 
-            // Dash attack
-            if (cancerousCell.CanDash && distance <= 200 && distance > 0)
-            {
-                cancerousCell.x += (dx / distance) * cancerousCell.dashSpeed * deltaTime;
-                cancerousCell.y += (dy / distance) * cancerousCell.dashSpeed * deltaTime;
-
-                cancerousCell.CanDash = false;
-            }
-
         }
+
 
         //Used to make the visuals of the emeny
         public static void CancerousCellDrawn(Game1 game, SpriteBatch spriteBatch, Texture2D cancerousCellTexture, CancerousCell cancerousCell)
         {
             spriteBatch.Begin();
+
+            spriteBatch.Draw(game.EnemyHealthBarTexture, new Rectangle((int)cancerousCell.x, (int)cancerousCell.y - 21, 102, 12), Color.Black);
+            spriteBatch.Draw(game.EnemyHealthBarTexture, new Rectangle((int)cancerousCell.x + 1, (int)cancerousCell.y - 20, (int)cancerousCell.health, 10), Color.Red);
+
             spriteBatch.Draw(cancerousCellTexture, new Rectangle((int)cancerousCell.x, (int)cancerousCell.y, 100, 100), Color.Red);
+
             spriteBatch.End();
         }
 

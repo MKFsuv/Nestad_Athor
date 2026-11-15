@@ -23,12 +23,31 @@ namespace Nestad_Athor
         public Vector2 distance;
         public MouseState prevMouseState;
         public bool IsAttacking = false;
-        public float attackTimer = 0f;
+        public float attackTimer = 1f;
+        public float Health = 100f;
+        public float hitCooldown = 0f;
+        public float HitCooldownDuration = 1f;
+        public bool hasHitThisSwing = false;
+        public Rectangle AttackHitbox
+        {
+            get
+            {
+                int attackX = (int)(x + 25 + 100 * Math.Cos(rotation));
+                int attackY = (int)(y + 25 + 100 * Math.Sin(rotation));
+
+                return new Rectangle(
+                    attackX - 50,
+                    attackY - 7,
+                    100,
+                    15
+                );
+            }
+        }
 
 
         //Code that draws the player
 
-        public static void PlayerDrawn(Game1 game, SpriteBatch spriteBatch, Texture2D playerAttackTexture, Texture2D playerTexture, Player player)
+        public void PlayerDrawn(Game1 game, SpriteBatch spriteBatch, Texture2D playerAttackTexture, Texture2D HealthBarTexture, Texture2D playerTexture, Player player)
         {
             spriteBatch.Begin();
 
@@ -37,29 +56,77 @@ namespace Nestad_Athor
             if (player.IsAttacking)
             {
                 spriteBatch.Draw(
-                    playerAttackTexture,
-                    new Vector2(
-                        player.x + 50 + 100 * (float)Math.Cos(player.rotation),
-                        player.y + 50 + 100 * (float)Math.Sin(player.rotation)
-                    ),
-                    null,
-                    Color.Yellow,
-                    player.rotation,
-                    new Vector2(0.5f, 0.5f),
-                    new Vector2(100f, 15f),
-                    SpriteEffects.None,
-                    0f
-                );
+    playerAttackTexture,
+    new Vector2(
+        player.x + 25 + 100 * (float)Math.Cos(player.rotation),
+        player.y + 25 + 100 * (float)Math.Sin(player.rotation)
+    ),
+    null,
+    Color.Yellow,
+    player.rotation,
+    new Vector2(0.5f, 0.5f),
+    new Vector2(100f, 15f),
+    SpriteEffects.None,
+    0f
+);
             }
+
+            spriteBatch.Draw(HealthBarTexture, new Rectangle(0, 0, 440, 60), Color.Black);
+            spriteBatch.Draw(HealthBarTexture, new Rectangle(20, 20, (int)(player.Health * 4), 20), Color.Red);
 
             spriteBatch.End();
         }
 
 
         //Code that makes the player  move
-        public static void PlayerMovement(GameTime gameTime, Player player)
+        public void PlayerMovement(GameTime gameTime, Player player, CancerousCell cancerousCell)
         {
+            Rectangle cancerousCellHitbox = new Rectangle((int)cancerousCell.x, (int)cancerousCell.y, 50, 50);
+
+            Rectangle playerHitbox = new Rectangle((int)player.x, (int)player.y, 50, 50);
+
             float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
+
+
+            bool AttackHits(Player player, Rectangle target)
+            {
+                if (!player.IsAttacking) return false;
+
+              
+                Vector2 center = new Vector2(player.x + 25, player.y + 25);
+                Vector2 dir = new Vector2((float)Math.Cos(player.rotation), (float)Math.Sin(player.rotation));
+
+                Rectangle t = target;
+                t.Inflate(8, 8);
+
+              
+                for (int i = 0; i <= 10; i++)
+                {
+                    Vector2 point = center + dir * (50 + i * 10);
+                    if (t.Contains(point))
+                        return true;
+                }
+                return false;
+            }
+
+            if (!player.IsAttacking)
+                hasHitThisSwing = false;
+
+            if (!hasHitThisSwing && AttackHits(player, cancerousCellHitbox))
+            {
+                cancerousCell.health -= 10;
+                hasHitThisSwing = true;
+            }
+
+            if (player.hitCooldown > 0f)
+                player.hitCooldown -= deltaTime;
+
+            if (cancerousCellHitbox.Intersects(playerHitbox) && player.hitCooldown <= 0f)
+            {
+                player.Health -= 10;
+                player.hitCooldown = player.HitCooldownDuration;
+            }
+
 
             KeyboardState keyboard = Keyboard.GetState();
 
@@ -80,7 +147,6 @@ namespace Nestad_Athor
                 player.x += player.speed * deltaTime;
             }
 
-            Rectangle playerHitbox = new Rectangle((int)player.x, (int)player.y, 50, 50);
             
             if (playerHitbox.Intersects(new Rectangle(0, 0, 1800, 19)) || // Top wall
                 playerHitbox.Intersects(new Rectangle(0, 0, 19, 1080)) || // Left wall

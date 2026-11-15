@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System.Collections.Generic;
 
 
 
@@ -11,11 +12,16 @@ namespace Nestad_Athor
         //Level variables
         public int Level = 1;
 
-
+        Tears tears = new Tears(0, 0);
+        Spitters spitter = new Spitters(1000, 400);
         Player player = new Player();
         CancerousCell cancerousCell = new CancerousCell(1200, 400, 200);
         CancerousCell cancerousCell2 = new CancerousCell(1000, 400, 200);
         CancerousCell cancerousCell3 = new CancerousCell(1400, 400, 300);
+        CancerousCell cancerousCell4 = new CancerousCell(20, 20, 300);
+        CancerousCell cancerousCell5 = new CancerousCell(1800, 400, 500);
+        CancerousCell cancerousCell6 = new CancerousCell(1400, 400, 300);
+
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
 
@@ -27,7 +33,10 @@ namespace Nestad_Athor
         Texture2D loadingScreenTexture;
         Texture2D PlayerAttackTexture;
         Texture2D PlayerHitboxTexture;
-
+        public Texture2D SpittersTexture;
+        public Texture2D TearsTexture;
+        public Texture2D HealthBarTexture;
+        public Texture2D EnemyHealthBarTexture;
 
         public Game1()
         {
@@ -54,11 +63,9 @@ namespace Nestad_Athor
             playerTexture = new Texture2D(GraphicsDevice, 1, 1);
             playerTexture.SetData(new[] { Color.White });
 
-            cancerousCellTexture = new Texture2D(GraphicsDevice, 1, 1);
-            cancerousCellTexture.SetData(new[] { Color.White });
+            cancerousCellTexture = Content.Load<Texture2D>("BadGuys//CancerousCell");
 
-            LevelWalls = new Texture2D(GraphicsDevice, 1, 1);
-            LevelWalls.SetData(new[] { Color.White });
+            LevelWalls = Content.Load<Texture2D>("Assets//Walls");
 
             Door = new Texture2D(GraphicsDevice, 1, 1);
             Door.SetData(new[] { Color.White });
@@ -68,7 +75,17 @@ namespace Nestad_Athor
 
             loadingScreenTexture = Content.Load<Texture2D>("LoadingScreen//LoadingScreen");
 
+            HealthBarTexture = new Texture2D(GraphicsDevice, 1, 1);
+            HealthBarTexture.SetData(new[] { Color.White });
 
+            EnemyHealthBarTexture = new Texture2D(GraphicsDevice, 1, 1);
+            EnemyHealthBarTexture.SetData(new[] { Color.White });
+
+            TearsTexture = new Texture2D(GraphicsDevice, 1, 1);
+            TearsTexture.SetData(new[] { Color.White });
+
+            SpittersTexture = new Texture2D(GraphicsDevice, 1, 1);
+            SpittersTexture.SetData(new[] { Color.White });
 
             spriteBatch = new SpriteBatch(GraphicsDevice);
         }
@@ -81,6 +98,8 @@ namespace Nestad_Athor
 
             KeyboardState keyboardState = Keyboard.GetState();
 
+            LoadingScreen.LoadingScreenUpdate(this, gameTime);
+
             //Debug switching between levels using NumPad keys
             if (keyboardState.IsKeyDown(Keys.NumPad1))
             {
@@ -89,6 +108,14 @@ namespace Nestad_Athor
             else if (keyboardState.IsKeyDown(Keys.NumPad2))
             {
                 Level = 2;
+            }
+            else if (keyboardState.IsKeyDown(Keys.NumPad3))
+            {
+                Level = 3;
+            }
+            else if (keyboardState.IsKeyDown(Keys.NumPad4))
+            {
+                Level = 4;
             }
             else if (keyboardState.IsKeyDown(Keys.NumPad0))
             {
@@ -103,6 +130,12 @@ namespace Nestad_Athor
                     break;
                 case 2:
                     Level2.Level2Update(this, gameTime, player, cancerousCell2, cancerousCell3);
+                    break;
+                case 3:
+                    Level3.Level3Update(this, gameTime, player, cancerousCell4, cancerousCell5, cancerousCell6);
+                    break;
+                case 4:
+                    Level4.Level4Update(this, gameTime, player, cancerousCell, spitter, tears);
                     break;
             }
 
@@ -130,8 +163,14 @@ namespace Nestad_Athor
                     Level2.Level2Drawn(this, spriteBatch, playerTexture, PlayerAttackTexture, LevelWalls, player, cancerousCell2, cancerousCell3, cancerousCellTexture, 
                         PlayerHitboxTexture);
                     break;
+                case 3:
+                    Level3.Level3Drawn(this, spriteBatch, playerTexture, LevelWalls, player, cancerousCell4, cancerousCell5, cancerousCell6, cancerousCellTexture, PlayerAttackTexture);
+                    break;
+                case 4:
+                    Level4.Level4Drawn(this, spriteBatch, playerTexture, LevelWalls, player, cancerousCell, PlayerAttackTexture, tears, spitter);
+                        break;
             }
-
+            
 
             base.Draw(gameTime);
         }
