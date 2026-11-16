@@ -86,7 +86,7 @@ namespace Nestad_Athor
             Rectangle playerHitbox = new Rectangle((int)player.x, (int)player.y, 50, 50);
 
             float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
-
+            KeyboardState keyboard = Keyboard.GetState();
 
             bool AttackHits(Player player, Rectangle target)
             {
@@ -128,66 +128,70 @@ namespace Nestad_Athor
             }
 
 
-            KeyboardState keyboard = Keyboard.GetState();
+            Rectangle topWall = new Rectangle(0, 0, 1800, 19);
+            Rectangle leftWall = new Rectangle(0, 0, 19, 1080);
+            Rectangle rightWall = new Rectangle(1780, 0, 20, 1080);
+            Rectangle bottomWall = new Rectangle(0, 1060, 1800, 20);
 
-            if (keyboard.IsKeyDown(Keys.W))
-            {
-                player.y -= player.speed * deltaTime;
-            }
-            if (keyboard.IsKeyDown(Keys.S))
-            {
-                player.y += player.speed * deltaTime;
-            }
+
+            float oldX = player.x;
+
+
             if (keyboard.IsKeyDown(Keys.A))
             {
                 player.x -= player.speed * deltaTime;
+
+                if (player.x < 19)
+                    player.x = 19;
             }
+
             if (keyboard.IsKeyDown(Keys.D))
             {
                 player.x += player.speed * deltaTime;
+
+                if (player.x + 50 > 1780)
+                    player.x = 1730;
             }
 
-            
-            if (playerHitbox.Intersects(new Rectangle(0, 0, 1800, 19)) || // Top wall
-                playerHitbox.Intersects(new Rectangle(0, 0, 19, 1080)) || // Left wall
-                playerHitbox.Intersects(new Rectangle(1780, 0, 20, 1080)) || // Right wall
-                playerHitbox.Intersects(new Rectangle(0, 1060, 1800, 19))) // Bottom wall
+            if (playerHitbox.Intersects(leftWall) ||
+                playerHitbox.Intersects(rightWall))
             {
-             
-                if (keyboard.IsKeyDown(Keys.W))
-                {
-                    player.y += player.speed * deltaTime; 
-                }
-                if (keyboard.IsKeyDown(Keys.S))
-                {
-                    player.y -= player.speed * deltaTime; 
-                }
-                if (keyboard.IsKeyDown(Keys.A))
-                {
-                    player.x += player.speed * deltaTime; 
-                }
-                if (keyboard.IsKeyDown(Keys.D))
-                {
-                    player.x -= player.speed * deltaTime; 
-                }
+                player.x = oldX;
+            }
+
+            // Vertical movement
+            float oldY = player.y;
+
+            if (keyboard.IsKeyDown(Keys.W))
+                player.y -= player.speed * deltaTime;
+
+            if (keyboard.IsKeyDown(Keys.S))
+                player.y += player.speed * deltaTime;
+
+            playerHitbox = new Rectangle((int)player.x, (int)player.y, 50, 50);
+
+            if (playerHitbox.Intersects(topWall) ||
+                playerHitbox.Intersects(bottomWall))
+            {
+                player.y = oldY;
             }
 
             MouseState mouse = Mouse.GetState();
 
-            // Aim at mouse
+        
             float dx = mouse.X - (player.x + 50);
             float dy = mouse.Y - (player.y + 50);
 
             player.rotation = (float)Math.Atan2(dy, dx);
 
-            // Attack
+         
             if (mouse.LeftButton == ButtonState.Pressed && !player.IsAttacking)
             {
                 player.IsAttacking = true;
                 player.attackTimer = 0.3f;
             }
 
-            // Attack duration
+     
             if (player.IsAttacking)
             {
                 player.attackTimer -= deltaTime;

@@ -37,6 +37,9 @@ namespace Nestad_Athor
         public Texture2D TearsTexture;
         public Texture2D HealthBarTexture;
         public Texture2D EnemyHealthBarTexture;
+        public SpriteFont StartScreenText;
+
+
 
         public Game1()
         {
@@ -86,6 +89,8 @@ namespace Nestad_Athor
 
             SpittersTexture = new Texture2D(GraphicsDevice, 1, 1);
             SpittersTexture.SetData(new[] { Color.White });
+
+            StartScreenText = Content.Load<SpriteFont>("Text//StartScreenText");
 
             spriteBatch = new SpriteBatch(GraphicsDevice);
         }
