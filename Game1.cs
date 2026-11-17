@@ -10,7 +10,7 @@ namespace Nestad_Athor
     public class Game1 : Game
     {
         //Level variables
-        public int Level = 1;
+        public int Level = 0;
 
         Tears tears = new Tears(0, 0);
         Player player = new Player();
