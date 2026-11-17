@@ -80,7 +80,11 @@ namespace Nestad_Athor
         {
             Rectangle cancerousCellHitbox = new Rectangle((int)cancerousCell.x, (int)cancerousCell.y, 50, 50);
 
-            Rectangle playerHitbox = new Rectangle((int)player.x, (int)player.y, 50, 50);
+            Rectangle playerHitbox = new Rectangle(
+    (int)player.x,
+    (int)player.y,
+    50,
+    50);
 
             float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
             KeyboardState keyboard = Keyboard.GetState();
