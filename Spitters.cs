@@ -24,8 +24,8 @@ namespace Nestad_Athor
         public bool hitThisSwing = false;  
 
         public float shootTimer = 0;
-        public float ShootInterval = 0.75f;
-        public float TearSpeed = 300;
+        public float ShootInterval = 0.5f;
+        public float TearSpeed = 500;
 
         public List<Tears> tearList = new List<Tears>();
 

@@ -13,8 +13,10 @@ namespace Nestad_Athor
         public int Level = 1;
 
         Tears tears = new Tears(0, 0);
-        Spitters spitter = new Spitters(1000, 400);
         Player player = new Player();
+
+        Spitters spitter = new Spitters(1000, 400);
+        
         CancerousCell cancerousCell = new CancerousCell(1200, 400, 200);
         CancerousCell cancerousCell2 = new CancerousCell(1000, 400, 200);
         CancerousCell cancerousCell3 = new CancerousCell(1400, 400, 300);

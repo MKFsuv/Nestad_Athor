@@ -56,19 +56,16 @@ namespace Nestad_Athor
             if (player.IsAttacking)
             {
                 spriteBatch.Draw(
-    playerAttackTexture,
-    new Vector2(
-        player.x + 25 + 100 * (float)Math.Cos(player.rotation),
-        player.y + 25 + 100 * (float)Math.Sin(player.rotation)
-    ),
-    null,
-    Color.Yellow,
-    player.rotation,
-    new Vector2(0.5f, 0.5f),
-    new Vector2(100f, 15f),
-    SpriteEffects.None,
-    0f
-);
+                playerAttackTexture,
+                new Vector2(
+                player.x + 25 + 100 * (float)Math.Cos(player.rotation),
+                player.y + 25 + 100 * (float)Math.Sin(player.rotation)),
+                null,
+                Color.Yellow,
+                player.rotation,
+                new Vector2(0.5f, 0.5f),
+                new Vector2(100f, 15f),
+                SpriteEffects.None, 0f);
             }
 
             spriteBatch.Draw(HealthBarTexture, new Rectangle(0, 0, 440, 60), Color.Black);
@@ -191,7 +188,7 @@ namespace Nestad_Athor
                 player.attackTimer = 0.3f;
             }
 
-     
+            
             if (player.IsAttacking)
             {
                 player.attackTimer -= deltaTime;

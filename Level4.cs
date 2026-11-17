@@ -37,7 +37,8 @@ namespace Nestad_Athor
             }
         }
 
-        public static void Level4Drawn(Game1 game, SpriteBatch spriteBatch, Texture2D playerTexture, Texture2D LevelWalls, Player player, CancerousCell cancerousCell, Texture2D PlayerAttackTexture, Tears tears, 
+        public static void Level4Drawn(Game1 game, SpriteBatch spriteBatch, Texture2D playerTexture, Texture2D LevelWalls, Player player, CancerousCell cancerousCell, 
+            Texture2D PlayerAttackTexture, Tears tears, 
             Spitters spitter)
         {
             spriteBatch.Begin();

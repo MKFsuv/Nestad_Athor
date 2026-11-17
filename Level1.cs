@@ -28,6 +28,7 @@ namespace Nestad_Athor
 
             CancerousCell.CancerousCellMovement(gameTime, player, cancerousCell);
 
+
             player.PlayerMovement(gameTime, player, cancerousCell);
 
             if (PlayerHitbox.Intersects(Door)) 

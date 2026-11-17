@@ -68,6 +68,7 @@ namespace Nestad_Athor
             CancerousCell.CancerousCellDrawn(game, spriteBatch, cancerousCellTexture, cancerousCell2);
             CancerousCell.CancerousCellDrawn(game, spriteBatch, cancerousCellTexture, cancerousCell3);
 
+           
             player.PlayerDrawn(game, spriteBatch, playerTexture, game.HealthBarTexture, playerAttackTexture, player);
         }
     }
