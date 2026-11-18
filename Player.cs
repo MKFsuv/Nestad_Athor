@@ -25,9 +25,19 @@ namespace Nestad_Athor
         public bool IsAttacking = false;
         public float attackTimer = 1f;
         public float Health = 100f;
+        public Color livingStatus = Color.Gold;
         public float hitCooldown = 0f;
         public float HitCooldownDuration = 1f;
         public bool hasHitThisSwing = false;
+        public bool IsRolling = false;
+        public float rollTimer = 1f;
+        public float rollCooldown = 0f;
+        public float rollDuration = 2;
+        public float rollDistance = 200f;
+        public Vector2 StartRollPos;
+        public Vector2 EndRollPos;
+        public float LevelTransitionCooldown = 0f;
+
         public Rectangle AttackHitbox
         {
             get
@@ -51,7 +61,7 @@ namespace Nestad_Athor
         {
             spriteBatch.Begin();
 
-            spriteBatch.Draw(playerTexture, new Rectangle((int)player.x, (int)player.y, 50, 50), Color.Gold);
+            spriteBatch.Draw(playerTexture, new Rectangle((int)player.x, (int)player.y, 50, 50), player.livingStatus);
 
             if (player.IsAttacking)
             {
@@ -61,13 +71,12 @@ namespace Nestad_Athor
                 player.x + 25 + 100 * (float)Math.Cos(player.rotation),
                 player.y + 25 + 100 * (float)Math.Sin(player.rotation)),
                 null,
-                Color.Yellow,
+                player.livingStatus, //This is color btw
                 player.rotation,
                 new Vector2(0.5f, 0.5f),
                 new Vector2(100f, 15f),
                 SpriteEffects.None, 0f);
             }
-
             spriteBatch.Draw(HealthBarTexture, new Rectangle(0, 0, 440, 60), Color.Black);
             spriteBatch.Draw(HealthBarTexture, new Rectangle(20, 20, (int)(player.Health * 4), 20), Color.Red);
 
@@ -81,13 +90,23 @@ namespace Nestad_Athor
             Rectangle cancerousCellHitbox = new Rectangle((int)cancerousCell.x, (int)cancerousCell.y, 50, 50);
 
             Rectangle playerHitbox = new Rectangle(
-    (int)player.x,
-    (int)player.y,
-    50,
-    50);
+                         (int)player.x,
+                         (int)player.y,
+                         50,
+                         50);
 
             float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
             KeyboardState keyboard = Keyboard.GetState();
+            //level cooldown (i did this to make it less buggier)
+            if (LevelTransitionCooldown > 0f)
+            {
+                LevelTransitionCooldown -= deltaTime;
+            }
+
+            if (player.Health < 0) //change color when dead
+            {
+                player.livingStatus = Color.Black;
+            }
 
             bool AttackHits(Player player, Rectangle target)
             {
@@ -137,56 +156,64 @@ namespace Nestad_Athor
 
             float oldX = player.x;
 
+            //Death
 
-            if (keyboard.IsKeyDown(Keys.A))
+            if (player.Health > 0)
             {
-                player.x -= player.speed * deltaTime;
+                if (!player.IsRolling)
+                {
+                    //Horizontal movement
+                    if (keyboard.IsKeyDown(Keys.A))
+                    {
+                        player.x -= player.speed * deltaTime;
 
-                if (player.x < 19)
-                    player.x = 19;
+                        if (player.x < 19)
+                            player.x = 19;
+                    }
+
+                    if (keyboard.IsKeyDown(Keys.D))
+                    {
+                        player.x += player.speed * deltaTime;
+
+                        if (player.x + 50 > 1780)
+                            player.x = 1730;
+                    }
+
+                    if (playerHitbox.Intersects(leftWall) ||
+                        playerHitbox.Intersects(rightWall))
+                    {
+                        player.x = oldX;
+                    }
+
+                    // Vertical movement
+                    float oldY = player.y;
+
+                    if (keyboard.IsKeyDown(Keys.W))
+                        player.y -= player.speed * deltaTime;
+
+                    if (keyboard.IsKeyDown(Keys.S))
+                        player.y += player.speed * deltaTime;
+
+                    playerHitbox = new Rectangle((int)player.x, (int)player.y, 50, 50);
+
+                    if (playerHitbox.Intersects(topWall) ||
+                        playerHitbox.Intersects(bottomWall))
+                    {
+                        player.y = oldY;
+                    }
+                }
             }
-
-            if (keyboard.IsKeyDown(Keys.D))
-            {
-                player.x += player.speed * deltaTime;
-
-                if (player.x + 50 > 1780)
-                    player.x = 1730;
-            }
-
-            if (playerHitbox.Intersects(leftWall) ||
-                playerHitbox.Intersects(rightWall))
-            {
-                player.x = oldX;
-            }
-
-            // Vertical movement
-            float oldY = player.y;
-
-            if (keyboard.IsKeyDown(Keys.W))
-                player.y -= player.speed * deltaTime;
-
-            if (keyboard.IsKeyDown(Keys.S))
-                player.y += player.speed * deltaTime;
-
-            playerHitbox = new Rectangle((int)player.x, (int)player.y, 50, 50);
-
-            if (playerHitbox.Intersects(topWall) ||
-                playerHitbox.Intersects(bottomWall))
-            {
-                player.y = oldY;
-            }
-
             MouseState mouse = Mouse.GetState();
 
-        
-            float dx = mouse.X - (player.x + 50);
-            float dy = mouse.Y - (player.y + 50);
+
+
+            float dx = mouse.X - (player.x + 25);
+            float dy = mouse.Y - (player.y + 25);
 
             player.rotation = (float)Math.Atan2(dy, dx);
 
          
-            if (mouse.LeftButton == ButtonState.Pressed && !player.IsAttacking)
+            if (mouse.LeftButton == ButtonState.Pressed && !player.IsAttacking && player.Health > 0)
             {
                 player.IsAttacking = true;
                 player.attackTimer = 0.3f;
@@ -203,17 +230,103 @@ namespace Nestad_Athor
                 }
             }
 
+            // Start roll (self explenatory)
+            if (mouse.RightButton == ButtonState.Pressed &&
+                player.prevMouseState.RightButton == ButtonState.Released &&
+                !player.IsRolling &&
+                player.rollCooldown <= 0f)
+            {
+                player.IsRolling = true;
+
+                player.StartRollPos = new Vector2(player.x, player.y);
+
+                player.EndRollPos = new Vector2(
+    player.x + player.rollDistance * (float)Math.Cos(player.rotation),
+    player.y + player.rollDistance * (float)Math.Sin(player.rotation));
+
+                player.EndRollPos.X =
+                    MathHelper.Clamp(player.EndRollPos.X, 19, 1730);
+
+                player.EndRollPos.Y =
+                    MathHelper.Clamp(player.EndRollPos.Y, 19, 1010);
+                player.rollTimer = 0f;
+            }
+
+            // Rolling (yeah)
+            if (player.IsRolling && player.Health > 0)
+            {
+                player.rollTimer += deltaTime * 8f;
+
+                float nextX = MathHelper.Lerp(
+                player.StartRollPos.X,
+                player.EndRollPos.X,
+                player.rollTimer);
+
+                float nextY = MathHelper.Lerp(
+                    player.StartRollPos.Y,
+                    player.EndRollPos.Y,
+                    player.rollTimer);
+
+                Rectangle nextHitbox = new Rectangle(
+                    (int)nextX,
+                    (int)nextY,
+                    50,
+                    50);
+
+                if (!nextHitbox.Intersects(leftWall) &&
+                    !nextHitbox.Intersects(rightWall) &&
+                    !nextHitbox.Intersects(topWall) &&
+                    !nextHitbox.Intersects(bottomWall))
+                {
+                    player.x = nextX;
+                    player.y = nextY;
+                }
+                else
+                {
+                    player.StopRoll();
+                    player.rollCooldown = 2f;
+                }
+
+                // Wall Clamp (so no noclip)
+                player.x = MathHelper.Clamp(player.x, 19, 1730);
+                player.y = MathHelper.Clamp(player.y, 19, 1010);
+
+                if (player.rollTimer >= 1f)
+                {
+                    player.x = player.EndRollPos.X;
+                    player.y = player.EndRollPos.Y;
+
+                    player.IsRolling = false;
+                    player.rollCooldown = 2f;
+                }
+            }
+
+            if (player.rollCooldown > 0)
+            {
+                player.rollCooldown -= deltaTime;
+            }
 
             Vector2 mousePosition = Mouse.GetState().Position.ToVector2();
 
-            player.distance.X = mousePosition.X - (player.x + 50);
-            player.distance.Y = mousePosition.Y - (player.y + 50);
+            player.distance.X = mousePosition.X - (player.x + 25);
+            player.distance.Y = mousePosition.Y - (player.y + 25);
 
             player.rotation = (float)Math.Atan2(
-                player.distance.Y,
-                player.distance.X
+            player.distance.Y,
+            player.distance.X
             );
 
+            player.prevMouseState = mouse;
+
+        }
+        //function to stop rolling (ayden use this when ever u want the player not being able to roll)
+        public void StopRoll()
+        {
+            IsRolling = false;
+            rollTimer = 0f;
+
+            StartRollPos = new Vector2(x, y);
+            EndRollPos = new Vector2(x, y);
         }
 
     }
