@@ -35,6 +35,7 @@ namespace Nestad_Athor
         public Vector2 StartRollPos;
         public Vector2 EndRollPos;
         public float LevelTransitionCooldown = 0f;
+        public int Damage = 10;
 
         public Rectangle AttackHitbox
         {
@@ -136,11 +137,7 @@ namespace Nestad_Athor
             if (player.hitCooldown > 0f)
                 player.hitCooldown -= deltaTime;
 
-            if (cancerousCellHitbox.Intersects(playerHitbox) && player.hitCooldown <= 0f)
-            {
-                player.Health -= 10;
-                player.hitCooldown = player.HitCooldownDuration;
-            }
+            
 
             Rectangle topWall = new Rectangle(0, 0, 1800, 19);
             Rectangle leftWall = new Rectangle(0, 0, 19, 1080);

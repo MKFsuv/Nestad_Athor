@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Nestad_Athor.Items;
 using System.Collections.Generic;
 
 //Hi
@@ -14,6 +15,7 @@ namespace Nestad_Athor
 
         Tears tears = new Tears(0, 0);
         Player player = new Player();
+        Damage_up_items damage = new Damage_up_items();
 
         Spitters spitter = new Spitters(1000, 400);
         
@@ -40,6 +42,7 @@ namespace Nestad_Athor
         public Texture2D HealthBarTexture;
         public Texture2D EnemyHealthBarTexture;
         public SpriteFont StartScreenText;
+        public Texture2D chunkofflesh;
 
 
 
@@ -91,6 +94,10 @@ namespace Nestad_Athor
 
             SpittersTexture = new Texture2D(GraphicsDevice, 1, 1);
             SpittersTexture.SetData(new[] { Color.White });
+
+            chunkofflesh = new Texture2D(GraphicsDevice, 1, 1);
+            chunkofflesh.SetData(new[] { Color.White });
+
 
             StartScreenText = Content.Load<SpriteFont>("Text//StartScreenText");
 
@@ -149,7 +156,7 @@ namespace Nestad_Athor
                     Level4.Level4Update(this, gameTime, player, cancerousCell, spitter, tears);
                     break;
                 case 5:
-                    Level5.Level5Update(this, gameTime, player, cancerousCell);
+                    Level5.Level5Update(this, gameTime, player, cancerousCell, damage);
                     break;
             }
 
@@ -184,7 +191,7 @@ namespace Nestad_Athor
                     Level4.Level4Drawn(this, spriteBatch, playerTexture, LevelWalls, player, cancerousCell, PlayerAttackTexture, tears, spitter);
                         break;
                 case 5:
-                    Level5.Level5Drawn(this, spriteBatch, playerTexture, LevelWalls, player, cancerousCell, cancerousCellTexture, PlayerAttackTexture);
+                    Level5.Level5Drawn(this, spriteBatch, playerTexture, LevelWalls, player, cancerousCell, cancerousCellTexture, PlayerAttackTexture, damage);
                     break;
             }
             

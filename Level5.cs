@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Nestad_Athor.Items;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +12,9 @@ namespace Nestad_Athor
     public class Level5
     {
 
-        public static void Level5Update(Game1 game, GameTime gameTime, Player player, CancerousCell cancerousCell)
+        Damage_up_items chunky = new Damage_up_items();
+
+        public static void Level5Update(Game1 game, GameTime gameTime, Player player, CancerousCell cancerousCell, Damage_up_items damage)
         {
 
             Rectangle Level2Wall1 = new Rectangle(0, 0, 1800, 20);
@@ -22,15 +25,15 @@ namespace Nestad_Athor
             Rectangle Door = new Rectangle(0, 270, 21, 540);
             Rectangle PlayerHitbox = new Rectangle((int)player.x, (int)player.y, 50, 50);
 
-       
 
+            damage.ChunkofFleshLogic(player, damage);
 
             player.PlayerMovement(gameTime, player, cancerousCell);
 
             if (PlayerHitbox.Intersects(Door))
             {
                 game.Level = 4;
-                player.x = 17050;
+                player.x = 1700;
             }
 
         }
@@ -38,7 +41,7 @@ namespace Nestad_Athor
 
 
         public static void Level5Drawn(Game1 game, SpriteBatch spriteBatch, Texture2D playerTexture, Texture2D LevelWalls, Player player, CancerousCell cancerousCell,
-        Texture2D cancerousCellTexture, Texture2D PlayerAttackTexture)
+        Texture2D chunkofflesh, Texture2D PlayerAttackTexture, Damage_up_items damage)
         {
 
 
@@ -54,6 +57,9 @@ namespace Nestad_Athor
             spriteBatch.Draw(LevelWalls, new Rectangle(0, 270, 21, 540), Color.MediumVioletRed);
 
             spriteBatch.End();
+
+
+            damage.ChunkofFleshDraw(game, spriteBatch, damage, chunkofflesh);
 
             player.PlayerDrawn(game, spriteBatch, playerTexture, game.HealthBarTexture, PlayerAttackTexture, player);
             

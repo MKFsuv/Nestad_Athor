@@ -56,7 +56,7 @@ namespace Nestad_Athor
                 }
                 else if (!spitters.hitThisSwing && player.AttackHitbox.Intersects(spittersHitbox))
                 {
-                    spitters.health -= 5;
+                    spitters.health -= player.Damage;
                     spitters.hitThisSwing = true;
                 }
 

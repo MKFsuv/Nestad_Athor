@@ -40,6 +40,11 @@ namespace Nestad_Athor
             if (cancerousCell.Alive)
             {
                 Rectangle cancerousCellHitbox = new Rectangle((int)cancerousCell.x, (int)cancerousCell.y, 100, 100);
+                Rectangle playerHitbox = new Rectangle(
+                (int)player.x,
+                (int)player.y,
+                50,
+                50);
 
                 if (cancerousCell.health <= 0)
                 {
@@ -52,7 +57,7 @@ namespace Nestad_Athor
                 {
                     if (player.AttackHitbox.Intersects(cancerousCellHitbox))
                     {
-                        cancerousCell.health -= 5;
+                        cancerousCell.health -= player.Damage;
                     }
                 }
 
@@ -89,6 +94,14 @@ namespace Nestad_Athor
 
                     cancerousCell.CanDash = false;
                 }
+
+
+                if (cancerousCellHitbox.Intersects(playerHitbox) && player.hitCooldown <= 0f)
+                {
+                    player.Health -= 10;
+                    player.hitCooldown = player.HitCooldownDuration;
+                }
+
             }
 
         }
