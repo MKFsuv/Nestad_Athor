@@ -156,9 +156,14 @@ namespace Nestad_Athor
 
             float oldX = player.x;
 
+
+            //Horizontal movement
+            if (keyboard.IsKeyDown(Keys.A))
+
             //Death
 
             if (player.Health > 0)
+
             {
                 if (!player.IsRolling)
                 {
