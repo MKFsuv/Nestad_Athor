@@ -99,7 +99,7 @@ namespace Nestad_Athor
         {
             spriteBatch.Begin();
 
-            spriteBatch.Draw(game.EnemyHealthBarTexture, new Rectangle((int)cancerousCell.x, (int)cancerousCell.y - 21, 102, 12), Color.Black);
+             spriteBatch.Draw(game.EnemyHealthBarTexture, new Rectangle((int)cancerousCell.x, (int)cancerousCell.y - 21, 102, 12), Color.Black);
             spriteBatch.Draw(game.EnemyHealthBarTexture, new Rectangle((int)cancerousCell.x + 1, (int)cancerousCell.y - 20, (int)cancerousCell.health, 10), Color.Red);
 
             spriteBatch.Draw(cancerousCellTexture, new Rectangle((int)cancerousCell.x, (int)cancerousCell.y, 100, 100), Color.Red);

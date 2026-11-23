@@ -137,7 +137,7 @@ namespace Nestad_Athor
 
             float oldX = player.x;
 
-
+            //Horizontal movement
             if (keyboard.IsKeyDown(Keys.A))
             {
                 player.x -= player.speed * deltaTime;

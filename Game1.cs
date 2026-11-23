@@ -128,6 +128,10 @@ namespace Nestad_Athor
             {
                 Level = 0;
             }
+            else if (keyboardState.IsKeyDown(Keys.NumPad5))
+            {
+                Level = 5;
+            }
 
             // Call the appropriate level update method based on the current level
             switch (Level)
@@ -143,6 +147,9 @@ namespace Nestad_Athor
                     break;
                 case 4:
                     Level4.Level4Update(this, gameTime, player, cancerousCell, spitter, tears);
+                    break;
+                case 5:
+                    Level5.Level5Update(this, gameTime, player, cancerousCell);
                     break;
             }
 
@@ -176,6 +183,9 @@ namespace Nestad_Athor
                 case 4:
                     Level4.Level4Drawn(this, spriteBatch, playerTexture, LevelWalls, player, cancerousCell, PlayerAttackTexture, tears, spitter);
                         break;
+                case 5:
+                    Level5.Level5Drawn(this, spriteBatch, playerTexture, LevelWalls, player, cancerousCell, cancerousCellTexture, PlayerAttackTexture);
+                    break;
             }
             
 
