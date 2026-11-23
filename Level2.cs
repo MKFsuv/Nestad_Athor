@@ -38,6 +38,7 @@ namespace Nestad_Athor
             }
 
 
+
             CancerousCell.CancerousCellMovement(gameTime, player, cancerousCell);
             CancerousCell.CancerousCellMovement(gameTime, player, cancerousCell2);
             player.PlayerMovement(gameTime, player, cancerousCell);
