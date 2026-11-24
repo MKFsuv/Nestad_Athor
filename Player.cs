@@ -21,6 +21,7 @@ namespace Nestad_Athor
         public MouseState prevMouseState;
         public bool IsAttacking = false;
         public float attackTimer = 1f;
+        public float attackCooldown = 5;
         public float Health = 100f;
         public Color livingStatus = Color.Gold;
         public float hitCooldown = 0f;
@@ -199,10 +200,10 @@ namespace Nestad_Athor
 
             player.rotation = (float)Math.Atan2(dy, dx);
 
-            if (mouse.LeftButton == ButtonState.Pressed && !player.IsAttacking && player.Health > 0)
+            if (mouse.LeftButton == ButtonState.Pressed && !player.IsAttacking && player.Health > 0 && attackCooldown >= 2f)
             {
                 player.IsAttacking = true;
-                player.attackTimer = 0.3f;
+                player.attackTimer = 0.5f;
             }
 
             if (player.IsAttacking)
@@ -212,7 +213,12 @@ namespace Nestad_Athor
                 if (player.attackTimer <= 0)
                 {
                     player.IsAttacking = false;
+                    attackCooldown = 0f;
                 }
+            }
+            else
+            {
+                player.attackCooldown += deltaTime;
             }
             // Start roll (self explanatory)
             if (mouse.RightButton == ButtonState.Pressed &&

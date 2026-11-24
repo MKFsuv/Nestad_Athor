@@ -26,6 +26,19 @@
 /processorParam:Version=3.8.6.0
 /build:Assets/Walls.png
 
+#begin BadGuys/9784c034-3052-43b2-86c5-4913a7e215c4-1695927406559.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/processorParam:Version=3.8.6.0
+/build:BadGuys/9784c034-3052-43b2-86c5-4913a7e215c4-1695927406559.png;BadGuys/CancerousCell2.png
+
 #begin BadGuys/CancerousCell.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -38,6 +51,32 @@
 /processorParam:TextureFormat=Color
 /processorParam:Version=3.8.6.0
 /build:BadGuys/CancerousCell.png
+
+#begin Chemo/Chemospritesheet.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/processorParam:Version=3.8.6.0
+/build:Chemo/Chemospritesheet.png
+
+#begin Chemo/spritesheet.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/processorParam:Version=3.8.6.0
+/build:Chemo/spritesheet.png
 
 #begin LoadingScreen/LoadingScreen.jpeg
 /importer:TextureImporter
