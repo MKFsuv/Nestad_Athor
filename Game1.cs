@@ -32,7 +32,7 @@ namespace Nestad_Athor
         SpriteBatch spriteBatch;
         Texture2D LevelWalls;
         Texture2D playerTexture;
-        Texture2D cancerousCellTexture;
+        public Texture2D cancerousCellTexture;
         Texture2D Door;
         Texture2D loadingScreenTexture;
         Texture2D PlayerAttackTexture;
@@ -178,20 +178,21 @@ namespace Nestad_Athor
                     LoadingScreen.LoadingScreenDrawn(this, spriteBatch, loadingScreenTexture);
                     break;
                 case 1:
-                    Level1.Level1Drawn(this, spriteBatch, playerTexture, LevelWalls, player, cancerousCell, cancerousCellTexture, PlayerAttackTexture);
+                    Level1.Level1Drawn(this, spriteBatch, playerTexture, LevelWalls, player, cancerousCell, cancerousCellTexture, PlayerAttackTexture, Door);
                     break;
                 case 2:
                     Level2.Level2Drawn(this, spriteBatch, playerTexture, PlayerAttackTexture, LevelWalls, player, cancerousCell2, cancerousCell3, cancerousCellTexture, 
-                        PlayerHitboxTexture);
+                        PlayerHitboxTexture, Door);
                     break;
                 case 3:
-                    Level3.Level3Drawn(this, spriteBatch, playerTexture, LevelWalls, player, cancerousCell4, cancerousCell5, cancerousCell6, cancerousCellTexture, PlayerAttackTexture);
+                    Level3.Level3Drawn(this, spriteBatch, playerTexture, LevelWalls, player, cancerousCell4, cancerousCell5, cancerousCell6, cancerousCellTexture, PlayerAttackTexture,
+                        Door);
                     break;
                 case 4:
-                    Level4.Level4Drawn(this, spriteBatch, playerTexture, LevelWalls, player, cancerousCell, PlayerAttackTexture, tears, spitter);
+                    Level4.Level4Drawn(this, spriteBatch, playerTexture, LevelWalls, player, cancerousCell, PlayerAttackTexture, tears, spitter, Door);
                         break;
                 case 5:
-                    Level5.Level5Drawn(this, spriteBatch, playerTexture, LevelWalls, player, cancerousCell, cancerousCellTexture, PlayerAttackTexture, damage);
+                    Level5.Level5Drawn(this, spriteBatch, playerTexture, LevelWalls, player, cancerousCell, cancerousCellTexture, PlayerAttackTexture, damage, Door);
                     break;
             }
             

@@ -23,6 +23,7 @@ namespace Nestad_Athor
             Rectangle Level2Wall4 = new Rectangle(0, 1060, 1800, 20);
 
             Rectangle Door = new Rectangle(0, 270, 21, 540);
+            Rectangle Door2 = new Rectangle(1779, 270, 21, 540);
             Rectangle PlayerHitbox = new Rectangle((int)player.x, (int)player.y, 50, 50);
 
 
@@ -35,13 +36,18 @@ namespace Nestad_Athor
                 game.Level = 4;
                 player.x = 1700;
             }
+            else if (PlayerHitbox.Intersects(Door2))
+            {
+                game.Level = 6;
+                player.y = 1000;
+            }
 
         }
 
 
 
         public static void Level5Drawn(Game1 game, SpriteBatch spriteBatch, Texture2D playerTexture, Texture2D LevelWalls, Player player, CancerousCell cancerousCell,
-        Texture2D chunkofflesh, Texture2D PlayerAttackTexture, Damage_up_items damage)
+        Texture2D chunkofflesh, Texture2D PlayerAttackTexture, Damage_up_items damage, Texture2D Door)
         {
 
 
@@ -54,7 +60,8 @@ namespace Nestad_Athor
             spriteBatch.Draw(LevelWalls, new Rectangle(0, 1060, 1800, 20), Color.DarkRed);
 
             //Door
-            spriteBatch.Draw(LevelWalls, new Rectangle(0, 270, 21, 540), Color.MediumVioletRed);
+            spriteBatch.Draw(Door, new Rectangle(0, 270, 21, 540), Color.MediumVioletRed);
+            spriteBatch.Draw(Door, new Rectangle(1779, 270, 21, 540), Color.MediumVioletRed);
 
             spriteBatch.End();
 

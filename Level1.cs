@@ -47,7 +47,7 @@ namespace Nestad_Athor
 
 
         public static void Level1Drawn(Game1 game, SpriteBatch spriteBatch, Texture2D playerTexture, Texture2D LevelWalls, Player player, CancerousCell cancerousCell, 
-        Texture2D cancerousCellTexture, Texture2D PlayerAttackTexture)
+        Texture2D cancerousCellTexture, Texture2D PlayerAttackTexture, Texture2D Door)
         {
 
             
@@ -60,7 +60,7 @@ namespace Nestad_Athor
             spriteBatch.Draw(LevelWalls, new Rectangle(0, 1060, 1800, 20), Color.DarkRed);
 
             //Door
-            spriteBatch.Draw(LevelWalls, new Rectangle(1779, 270, 21, 540), Color.MediumVioletRed);
+            spriteBatch.Draw(Door, new Rectangle(1779, 270, 21, 540), Color.MediumVioletRed);
 
             spriteBatch.End();
 

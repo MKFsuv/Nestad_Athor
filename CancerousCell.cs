@@ -12,7 +12,7 @@ namespace Nestad_Athor
 {
     public class CancerousCell
     {
-        //Variables for each type of enemy
+        //Variables for each type of enemy  
         public float x;
         public float y;
         public float chaseSpeed;
@@ -115,7 +115,7 @@ namespace Nestad_Athor
              spriteBatch.Draw(game.EnemyHealthBarTexture, new Rectangle((int)cancerousCell.x, (int)cancerousCell.y - 21, 102, 12), Color.Black);
             spriteBatch.Draw(game.EnemyHealthBarTexture, new Rectangle((int)cancerousCell.x + 1, (int)cancerousCell.y - 20, (int)cancerousCell.health, 10), Color.Red);
 
-            spriteBatch.Draw(cancerousCellTexture, new Rectangle((int)cancerousCell.x, (int)cancerousCell.y, 100, 100), Color.Red);
+            spriteBatch.Draw(game.cancerousCellTexture, new Rectangle((int)cancerousCell.x, (int)cancerousCell.y, 100, 100), Color.Red);
 
             spriteBatch.End();
         }
