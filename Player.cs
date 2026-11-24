@@ -16,7 +16,6 @@ namespace Nestad_Athor
         public float speed = 600;
         public float x = 900;
         public float y = 540;
-        public float attacktime = 0.0f;
         public float rotation;
         public Vector2 distance;
         public MouseState prevMouseState;
@@ -215,7 +214,6 @@ namespace Nestad_Athor
                     player.IsAttacking = false;
                 }
             }
-
             // Start roll (self explanatory)
             if (mouse.RightButton == ButtonState.Pressed &&
                 player.prevMouseState.RightButton == ButtonState.Released &&
