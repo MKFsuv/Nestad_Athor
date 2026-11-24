@@ -158,6 +158,15 @@ namespace Nestad_Athor
                 case 5:
                     Level5.Level5Update(this, gameTime, player, cancerousCell, damage);
                     break;
+                case 6:
+                    Level6.Level6Update(this, gameTime, player, cancerousCell, damage);
+                    break;
+                case 7:
+                    Level7.Level7Update(this, gameTime, player, cancerousCell, damage);
+                    break;
+                case 8:
+                    Level8.Level8Update(this, gameTime, player, cancerousCell, damage);
+                    break;
             }
 
 
@@ -193,6 +202,15 @@ namespace Nestad_Athor
                         break;
                 case 5:
                     Level5.Level5Drawn(this, spriteBatch, playerTexture, LevelWalls, player, cancerousCell, cancerousCellTexture, PlayerAttackTexture, damage, Door);
+                    break;
+                case 6:
+                    Level6.Level6Drawn(this, spriteBatch, playerTexture, LevelWalls, player, cancerousCell, cancerousCellTexture, PlayerAttackTexture, damage, Door);
+                    break;
+                case 7:
+                    Level7.Level7Drawn(this, spriteBatch, playerTexture, LevelWalls, player, cancerousCell, cancerousCellTexture, PlayerAttackTexture, damage, Door);
+                    break;
+                case 8:
+                    Level8.Level8Drawn(this, spriteBatch, playerTexture, LevelWalls, player, cancerousCell, cancerousCellTexture, PlayerAttackTexture, damage, Door);
                     break;
             }
             

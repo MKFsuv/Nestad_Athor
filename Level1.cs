@@ -36,12 +36,12 @@ namespace Nestad_Athor
 
             if (PlayerHitbox.Intersects(Door))
             {
-                player.StopRoll();
+
 
                 game.Level = 2;
 
-                player.x = 30;
-                player.y = 540;
+                player.x = 50;
+               
             }
         }
 
