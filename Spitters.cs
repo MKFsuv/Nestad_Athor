@@ -29,7 +29,12 @@ namespace Nestad_Athor
 
         public List<Tears> tearList = new List<Tears>();
 
-        public static void SpittersMovement(Game1 game, GameTime gameTime, Player player, Spitters spitters, Tears tears)
+        public static void SpittersMovement(Game1 game, 
+            GameTime gameTime, 
+            Player player, 
+            Spitters spitters, 
+            Tears tears)
+
         {
             float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
             Rectangle playerHitbox = new Rectangle((int)player.x, (int)player.y, 50, 50);
@@ -105,7 +110,12 @@ namespace Nestad_Athor
             spitters.tearList.RemoveAll(t => !t.on);
         }
 
-        public static void SpittersDrawn(Game1 game, SpriteBatch spriteBatch, Texture2D spittersTexture, Spitters spitters, Tears tears)
+        public static void SpittersDrawn(Game1 game, 
+            SpriteBatch spriteBatch, 
+            Texture2D spittersTexture, 
+            Spitters spitters, 
+            Tears tears)
+
         {
             spriteBatch.Begin();
 

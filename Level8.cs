@@ -14,7 +14,12 @@ namespace Nestad_Athor
 
         TumorBoss tumor = new TumorBoss();
 
-        public static void Level8Update(Game1 game, GameTime gameTime, Player player, CancerousCell cancerousCell, Damage_up_items damage, TumorBoss tumor)
+        public static void Level8Update(Game1 game, 
+            GameTime gameTime, 
+            Player player, 
+            CancerousCell cancerousCell, 
+            Damage_up_items damage, 
+            TumorBoss tumor)
         {
 
             Rectangle Level2Wall1 = new Rectangle(0, 0, 1800, 20);
@@ -46,8 +51,19 @@ namespace Nestad_Athor
 
 
 
-        public static void Level8Drawn(Game1 game, SpriteBatch spriteBatch, Texture2D playerTexture, Texture2D LevelWalls, Player player, CancerousCell cancerousCell,
-        Texture2D chunkofflesh, Texture2D PlayerAttackTexture, Damage_up_items damage, Texture2D Door, Texture2D tumorBossTexture, TumorBoss tumor)
+        public static void Level8Drawn(Game1 game, 
+            SpriteBatch spriteBatch, 
+            Texture2D playerTexture, 
+            Texture2D LevelWalls, 
+            Player player, 
+            CancerousCell cancerousCell,
+            Texture2D chunkofflesh, 
+            Texture2D PlayerAttackTexture, 
+            Damage_up_items damage, 
+            Texture2D Door, 
+            Texture2D tumorBossTexture, 
+            TumorBoss tumor)
+
         {
 
 
@@ -68,7 +84,14 @@ namespace Nestad_Athor
 
             tumor.TumorBossDraw(game, spriteBatch, tumorBossTexture);
 
-            player.PlayerDrawn(game, spriteBatch, playerTexture, game.chemoDead, game.HealthBarTexture, PlayerAttackTexture, player);
+
+            player.PlayerDrawn(game, 
+                spriteBatch, 
+                playerTexture, 
+                game.chemoDead, 
+                game.HealthBarTexture, 
+                PlayerAttackTexture, 
+                player);
 
         }
 

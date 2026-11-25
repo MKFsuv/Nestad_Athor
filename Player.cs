@@ -57,7 +57,13 @@ namespace Nestad_Athor
         }
 
         //Code that draws the player
-        public void PlayerDrawn(Game1 game, SpriteBatch spriteBatch, Texture2D playerAttackTexture, SoundEffect chemoDead, Texture2D HealthBarTexture, Texture2D playerTexture, Player player)
+        public void PlayerDrawn(Game1 game, 
+            SpriteBatch spriteBatch, 
+            Texture2D playerAttackTexture, 
+            SoundEffect chemoDead, 
+            Texture2D HealthBarTexture, 
+            Texture2D playerTexture, 
+            Player player)
         {
             spriteBatch.Begin();
 
@@ -92,7 +98,10 @@ namespace Nestad_Athor
         }
 
         //Code that makes the player move
-        public void PlayerMovement(GameTime gameTime, Player player, CancerousCell cancerousCell)
+        public void PlayerMovement(GameTime gameTime, 
+            Player player, 
+            CancerousCell cancerousCell)
+
         {
             Rectangle cancerousCellHitbox = new Rectangle((int)cancerousCell.x, (int)cancerousCell.y, 50, 50);
 
@@ -213,7 +222,9 @@ namespace Nestad_Athor
 
             player.rotation = (float)Math.Atan2(dy, dx);
 
-            if (mouse.LeftButton == ButtonState.Pressed && !player.IsAttacking && player.Health > 0 && attackCooldown >= 1f)
+            if (mouse.LeftButton == ButtonState.Pressed && 
+               !player.IsAttacking && player.Health > 0 && 
+               attackCooldown >= 1f)
             {
                 player.IsAttacking = true;
                 player.attackTimer = 0.5f;

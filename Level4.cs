@@ -13,7 +13,13 @@ namespace Nestad_Athor
 
 
 
-        public static void Level4Update(Game1 game, GameTime gameTime, Player player, CancerousCell cancerousCell, Spitters spitter, Tears tears)
+        public static void Level4Update(Game1 game, 
+            GameTime gameTime, 
+            Player player, 
+            CancerousCell cancerousCell, 
+            Spitters spitter, 
+            Tears tears)
+
         {
             Rectangle Level2Wall1 = new Rectangle(0, 0, 1800, 20);
             Rectangle Level2Wall2 = new Rectangle(0, 0, 20, 1080);
@@ -43,9 +49,15 @@ namespace Nestad_Athor
             }
         }
 
-        public static void Level4Drawn(Game1 game, SpriteBatch spriteBatch, Texture2D playerTexture, Texture2D LevelWalls, Player player, CancerousCell cancerousCell, 
+        public static void Level4Drawn(Game1 game, 
+            SpriteBatch spriteBatch, 
+            Texture2D playerTexture, 
+            Texture2D LevelWalls, 
+            Player player, 
+            CancerousCell cancerousCell, 
             Texture2D PlayerAttackTexture, Tears tears,
             Spitters spitter, Texture2D Door)
+
         {
             spriteBatch.Begin();
 
@@ -64,7 +76,13 @@ namespace Nestad_Athor
 
             Spitters.SpittersDrawn(game, spriteBatch, game.SpittersTexture, spitter, tears);
 
-            player.PlayerDrawn(game, spriteBatch, playerTexture, game.chemoDead, game.HealthBarTexture, PlayerAttackTexture, player);
+            player.PlayerDrawn(game, 
+                spriteBatch, 
+                playerTexture, 
+                game.chemoDead, 
+                game.HealthBarTexture, 
+                PlayerAttackTexture, 
+                player);
         }
 
     }

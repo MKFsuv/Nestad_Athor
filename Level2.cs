@@ -13,7 +13,12 @@ namespace Nestad_Athor
 
 
 
-        public static void Level2Update(Game1 game, GameTime gameTime, Player player, CancerousCell cancerousCell, CancerousCell cancerousCell2)
+        public static void Level2Update(Game1 game, 
+            GameTime gameTime, 
+            Player player, 
+            CancerousCell cancerousCell, 
+            CancerousCell cancerousCell2)
+
         {
             Rectangle Level2Wall1 = new Rectangle(0, 0, 1800, 20);
             Rectangle Level2Wall2 = new Rectangle(0, 0, 20, 1080);
@@ -44,9 +49,16 @@ namespace Nestad_Athor
             player.PlayerMovement(gameTime, player, cancerousCell);
         }
 
-        public static void Level2Drawn(Game1 game, SpriteBatch spriteBatch, Texture2D playerTexture, Texture2D playerAttackTexture, Texture2D LevelWalls, 
-           Player player, CancerousCell cancerousCell2, CancerousCell cancerousCell3, Texture2D Door,
-           Texture2D cancerousCellTexture, Texture2D playerHitboxTexture)
+        public static void Level2Drawn(Game1 game, 
+            SpriteBatch spriteBatch, 
+            Texture2D playerTexture, 
+            Texture2D playerAttackTexture, 
+            Texture2D LevelWalls, 
+            Player player, 
+            CancerousCell cancerousCell2, CancerousCell cancerousCell3, Texture2D Door,
+            Texture2D cancerousCellTexture, 
+            Texture2D playerHitboxTexture)
+
         {
 
             
@@ -69,8 +81,15 @@ namespace Nestad_Athor
             CancerousCell.CancerousCellDrawn(game, spriteBatch, cancerousCellTexture, cancerousCell2);
             CancerousCell.CancerousCellDrawn(game, spriteBatch, cancerousCellTexture, cancerousCell3);
 
-           
-            player.PlayerDrawn(game, spriteBatch, playerTexture, game.chemoDead, game.HealthBarTexture, playerAttackTexture, player);
+
+            player.PlayerDrawn(game, 
+                spriteBatch, 
+                playerTexture, 
+                game.chemoDead, 
+                game.HealthBarTexture, 
+                playerAttackTexture, 
+                player);
+
         }
     }
 }
