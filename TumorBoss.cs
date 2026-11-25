@@ -21,8 +21,8 @@ namespace Nestad_Athor
         public float x = 825;
         public float y = 465;
         public int Size = 150;
-        public int maxHealth = 100;
-        public int health = 100;
+        public int maxHealth = 300;
+        public int health = 300;
         public bool hitThisSwing = false;
         public bool Alive = true;
 
