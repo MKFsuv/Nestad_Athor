@@ -17,7 +17,7 @@ namespace Nestad_Athor
         Player player = new Player();
         Damage_up_items damage = new Damage_up_items();
 
-        TumorBoss tumorBoss = new TumorBoss();
+        TumorBoss tumor = new TumorBoss();
 
         Spitters spitter = new Spitters(1000, 400);
         
@@ -146,6 +146,10 @@ namespace Nestad_Athor
             {
                 Level = 5;
             }
+            else if (keyboardState.IsKeyDown(Keys.NumPad6))
+            {
+                Level = 8;
+            }
 
             // Call the appropriate level update method based on the current level
             switch (Level)
@@ -172,7 +176,7 @@ namespace Nestad_Athor
                     Level7.Level7Update(this, gameTime, player, cancerousCell, damage);
                     break;
                 case 8:
-                    Level8.Level8Update(this, gameTime, player, cancerousCell, damage);
+                    Level8.Level8Update(this, gameTime, player, cancerousCell, damage, tumor);
                     break;
             }
 
@@ -217,7 +221,7 @@ namespace Nestad_Athor
                     Level7.Level7Drawn(this, spriteBatch, playerTexture, LevelWalls, player, cancerousCell, cancerousCellTexture, PlayerAttackTexture, damage, Door);
                     break;
                 case 8:
-                    Level8.Level8Drawn(this, spriteBatch, playerTexture, LevelWalls, player, cancerousCell, cancerousCellTexture, PlayerAttackTexture, damage, Door);
+                    Level8.Level8Drawn(this, spriteBatch, playerTexture, LevelWalls, player, cancerousCell, cancerousCellTexture, PlayerAttackTexture, damage, Door, tumorBossTexture, tumor);
                     break;
             }
             

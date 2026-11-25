@@ -36,7 +36,7 @@ namespace Nestad_Athor
                 game.Level = 3;
                 player.x = 1700;
             }
-            else if (PlayerHitbox.Intersects(Door))
+            else if (PlayerHitbox.Intersects(Door2))
             {
                 game.Level = 5;
                 player.x = 100;
