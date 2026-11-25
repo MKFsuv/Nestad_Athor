@@ -125,7 +125,7 @@ namespace Nestad_Athor
                 Rectangle tearHitbox = new Rectangle((int)tear.x - 10, (int)tear.y - 4, 20, 8);
                 if (tear.on && tearHitbox.Intersects(playerHitbox))
                 {
-                    player.Health -= 10;
+                    player.Health -= 0.5f;
                     tear.on = false;
                 }
             }

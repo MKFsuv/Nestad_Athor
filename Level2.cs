@@ -70,7 +70,7 @@ namespace Nestad_Athor
             CancerousCell.CancerousCellDrawn(game, spriteBatch, cancerousCellTexture, cancerousCell3);
 
            
-            player.PlayerDrawn(game, spriteBatch, playerTexture, game.HealthBarTexture, playerAttackTexture, player);
+            player.PlayerDrawn(game, spriteBatch, playerTexture, game.chemoDead, game.HealthBarTexture, playerAttackTexture, player);
         }
     }
 }

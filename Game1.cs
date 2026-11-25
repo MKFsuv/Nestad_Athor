@@ -1,4 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
+using Microsoft.Xna.Framework.Media;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Nestad_Athor.Items;
@@ -40,6 +42,7 @@ namespace Nestad_Athor
         Texture2D loadingScreenTexture;
         Texture2D PlayerAttackTexture;
         Texture2D PlayerHitboxTexture;
+        public SoundEffect chemoDead;
         public Texture2D SpittersTexture;
         public Texture2D TearsTexture;
         public Texture2D HealthBarTexture;
@@ -74,6 +77,8 @@ namespace Nestad_Athor
             // List of the creating of Textures
             playerTexture = new Texture2D(GraphicsDevice, 1, 1);
             playerTexture.SetData(new[] { Color.White });
+
+            chemoDead = Content.Load<SoundEffect>("Chemo//SFX//chemoDeath");
 
             cancerousCellTexture = Content.Load<Texture2D>("BadGuys//CancerousCell");
 

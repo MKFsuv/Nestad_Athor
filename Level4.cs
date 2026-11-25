@@ -64,7 +64,7 @@ namespace Nestad_Athor
 
             Spitters.SpittersDrawn(game, spriteBatch, game.SpittersTexture, spitter, tears);
 
-            player.PlayerDrawn(game, spriteBatch, playerTexture, game.HealthBarTexture, PlayerAttackTexture, player);
+            player.PlayerDrawn(game, spriteBatch, playerTexture, game.chemoDead, game.HealthBarTexture, PlayerAttackTexture, player);
         }
 
     }

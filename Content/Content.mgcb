@@ -52,20 +52,14 @@
 /processorParam:Version=3.8.6.0
 /build:BadGuys/CancerousCell.png
 
-#begin Chemo/Chemospritesheet.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
+#begin Chemo/SFX/chemoDeath.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
 /processorParam:Version=3.8.6.0
-/build:Chemo/Chemospritesheet.png
+/build:Chemo/SFX/chemoDeath.wav
 
-#begin Chemo/spritesheet.png
+#begin Chemo/Sprites/Chemospritesheet.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -76,7 +70,20 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /processorParam:Version=3.8.6.0
-/build:Chemo/spritesheet.png
+/build:Chemo/Sprites/Chemospritesheet.png;Chemo/sprites/Chemospritesheet
+
+#begin Chemo/Sprites/spritesheet.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/processorParam:Version=3.8.6.0
+/build:Chemo/Sprites/spritesheet.png;Chemo/sprites/spritesheet
 
 #begin LoadingScreen/LoadingScreen.jpeg
 /importer:TextureImporter
