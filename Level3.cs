@@ -12,7 +12,13 @@ namespace Nestad_Athor
     {
 
 
-        public static void Level3Update(Game1 game, GameTime gameTime, Player player, CancerousCell cancerousCell4, CancerousCell cancerousCell5, CancerousCell cancerousCell6)
+        public static void Level3Update(Game1 game, 
+            GameTime gameTime, 
+            Player player, 
+            CancerousCell cancerousCell4, 
+            CancerousCell cancerousCell5, 
+            CancerousCell cancerousCell6)
+
         {
 
             Rectangle Level2Wall1 = new Rectangle(0, 0, 1800, 20);
@@ -45,8 +51,18 @@ namespace Nestad_Athor
         }
 
 
-        public static void Level3Drawn(Game1 game, SpriteBatch spriteBatch, Texture2D playerTexture, Texture2D LevelWalls, Player player, CancerousCell cancerousCell4, CancerousCell cancerousCell5, CancerousCell cancerousCell6,
-        Texture2D cancerousCellTexture, Texture2D PlayerAttackTexture, Texture2D Door)
+        public static void Level3Drawn(Game1 game, 
+            SpriteBatch spriteBatch, 
+            Texture2D playerTexture, 
+            Texture2D LevelWalls, 
+            Player player, 
+            CancerousCell cancerousCell4, 
+            CancerousCell cancerousCell5, 
+            CancerousCell cancerousCell6,
+            Texture2D cancerousCellTexture, 
+            Texture2D PlayerAttackTexture, 
+            Texture2D Door)
+
         {
 
 
@@ -68,7 +84,15 @@ namespace Nestad_Athor
             CancerousCell.CancerousCellDrawn(game, spriteBatch, cancerousCellTexture, cancerousCell4);
             CancerousCell.CancerousCellDrawn(game, spriteBatch, cancerousCellTexture, cancerousCell5);
             CancerousCell.CancerousCellDrawn(game, spriteBatch, cancerousCellTexture, cancerousCell6);
-            player.PlayerDrawn(game, spriteBatch, playerTexture, game.chemoDead, game.HealthBarTexture, PlayerAttackTexture, player);
+
+
+            player.PlayerDrawn(game, 
+                spriteBatch, 
+                playerTexture, 
+                game.chemoDead, 
+                game.HealthBarTexture, 
+                PlayerAttackTexture, 
+                player);
         }
 
 

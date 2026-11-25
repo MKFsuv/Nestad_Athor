@@ -14,7 +14,13 @@ namespace Nestad_Athor
 
         Damage_up_items chunky = new Damage_up_items();
 
-        public static void Level5Update(Game1 game, GameTime gameTime, Player player, CancerousCell cancerousCell, Damage_up_items damage)
+        public static void Level5Update(Game1 game, 
+            GameTime gameTime, 
+            Player player, 
+            CancerousCell 
+            cancerousCell, 
+            Damage_up_items damage)
+
         {
 
             Rectangle Level2Wall1 = new Rectangle(0, 0, 1800, 20);
@@ -46,8 +52,17 @@ namespace Nestad_Athor
 
 
 
-        public static void Level5Drawn(Game1 game, SpriteBatch spriteBatch, Texture2D playerTexture, Texture2D LevelWalls, Player player, CancerousCell cancerousCell,
-        Texture2D chunkofflesh, Texture2D PlayerAttackTexture, Damage_up_items damage, Texture2D Door)
+        public static void Level5Drawn(Game1 game, 
+            SpriteBatch spriteBatch, 
+            Texture2D playerTexture, 
+            Texture2D LevelWalls, 
+            Player player, 
+            CancerousCell cancerousCell,
+            Texture2D chunkofflesh, 
+            Texture2D PlayerAttackTexture, 
+            Damage_up_items damage, 
+            Texture2D Door)
+
         {
 
 
@@ -68,7 +83,13 @@ namespace Nestad_Athor
 
             damage.ChunkofFleshDraw(game, spriteBatch, damage, chunkofflesh);
 
-            player.PlayerDrawn(game, spriteBatch, playerTexture, game.chemoDead, game.HealthBarTexture, PlayerAttackTexture, player);
+            player.PlayerDrawn(game, 
+                spriteBatch, 
+                playerTexture, 
+                game.chemoDead, 
+                game.HealthBarTexture, 
+                PlayerAttackTexture, 
+                player);
             
         }
 

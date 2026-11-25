@@ -209,7 +209,10 @@ namespace Nestad_Athor
             }
         }
 
-        public void TumorBossDraw(Game1 game, SpriteBatch spriteBatch, Texture2D tumorBossTexture)
+        public void TumorBossDraw(Game1 game, 
+            SpriteBatch spriteBatch, 
+            Texture2D tumorBossTexture)
+
         {
             spriteBatch.Begin();
 
