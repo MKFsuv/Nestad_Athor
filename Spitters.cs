@@ -18,8 +18,8 @@ namespace Nestad_Athor
             
         }
 
-        public int maxHealth = 100;
-        public int health = 100;
+        public int maxHealth = 20;
+        public int health = 20;
         public bool Alive = true;
         public bool hitThisSwing = false;  
 
@@ -110,7 +110,7 @@ namespace Nestad_Athor
             spriteBatch.Begin();
 
             spriteBatch.Draw(game.EnemyHealthBarTexture, new Rectangle((int)spitters.x, (int)spitters.y - 21, 102, 12), Color.Black);
-            spriteBatch.Draw(game.EnemyHealthBarTexture, new Rectangle((int)spitters.x + 1, (int)spitters.y - 20, (int)spitters.health, 10), Color.Red);
+            spriteBatch.Draw(game.EnemyHealthBarTexture, new Rectangle((int)spitters.x + 1, (int)spitters.y - 20, (int)spitters.health * 5, 10), Color.Red);
 
             spriteBatch.Draw(spittersTexture, new Rectangle((int)spitters.x, (int)spitters.y, 100, 100), Color.Green);
 

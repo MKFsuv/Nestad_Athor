@@ -17,6 +17,8 @@ namespace Nestad_Athor
         Player player = new Player();
         Damage_up_items damage = new Damage_up_items();
 
+        TumorBoss tumorBoss = new TumorBoss();
+
         Spitters spitter = new Spitters(1000, 400);
         
         CancerousCell cancerousCell = new CancerousCell(1200, 400, 200);
@@ -31,6 +33,7 @@ namespace Nestad_Athor
 
         SpriteBatch spriteBatch;
         Texture2D LevelWalls;
+        public Texture2D tumorBossTexture;
         Texture2D playerTexture;
         public Texture2D cancerousCellTexture;
         Texture2D Door;
@@ -98,6 +101,9 @@ namespace Nestad_Athor
 
             chunkofflesh = new Texture2D(GraphicsDevice, 1, 1);
             chunkofflesh.SetData(new[] { Color.White });
+
+            tumorBossTexture = new Texture2D(GraphicsDevice, 1, 1);
+            tumorBossTexture.SetData(new[] { Color.White });
 
 
             StartScreenText = Content.Load<SpriteFont>("Text//StartScreenText");
