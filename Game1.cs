@@ -42,13 +42,16 @@ namespace Nestad_Athor
         Texture2D loadingScreenTexture;
         Texture2D PlayerAttackTexture;
         Texture2D PlayerHitboxTexture;
-        public SoundEffect chemoDead;
         public Texture2D SpittersTexture;
         public Texture2D TearsTexture;
         public Texture2D HealthBarTexture;
         public Texture2D EnemyHealthBarTexture;
         public SpriteFont StartScreenText;
         public Texture2D chunkofflesh;
+        public SoundEffect chemoDead;
+        public SoundEffect minigun;
+        public SoundEffectInstance _minigun;
+        public SoundEffect minigunEnd;
 
 
 
@@ -79,6 +82,11 @@ namespace Nestad_Athor
             playerTexture.SetData(new[] { Color.White });
 
             chemoDead = Content.Load<SoundEffect>("Chemo//SFX//chemoDeath");
+
+            minigun = Content.Load<SoundEffect>("TumorBoss//SFX//Minigun");
+            SoundEffectInstance _minigun = minigun.CreateInstance();
+
+            minigunEnd = Content.Load<SoundEffect>("TumorBoss//SFX//MinigunEnd");
 
             cancerousCellTexture = Content.Load<Texture2D>("BadGuys//CancerousCell");
 
@@ -181,7 +189,7 @@ namespace Nestad_Athor
                     Level7.Level7Update(this, gameTime, player, cancerousCell, damage);
                     break;
                 case 8:
-                    Level8.Level8Update(this, gameTime, player, cancerousCell, damage, tumor);
+                    Level8.Level8Update(this, gameTime, player, cancerousCell, damage, tumor, minigun, minigunEnd, _minigun);
                     break;
             }
 
