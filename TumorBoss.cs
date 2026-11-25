@@ -171,7 +171,7 @@ namespace Nestad_Athor
                 {
                     ball.on = false;
                 }
-            }
+            }   
             balls.RemoveAll(b => !b.on);
         }
 
