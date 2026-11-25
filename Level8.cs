@@ -22,8 +22,7 @@ namespace Nestad_Athor
             Damage_up_items damage, 
             TumorBoss tumor,
             SoundEffect minigun,
-            SoundEffect minigunEnd, 
-            SoundEffectInstance _minigun)
+            SoundEffect minigunEnd)
         {
 
             Rectangle Level2Wall1 = new Rectangle(0, 0, 1800, 20);
@@ -35,7 +34,7 @@ namespace Nestad_Athor
             Rectangle Door2 = new Rectangle(1779, 270, 21, 540);
             Rectangle PlayerHitbox = new Rectangle((int)player.x, (int)player.y, 50, 50);
 
-            tumor.TumorBossLogic(gameTime, player, minigun, minigunEnd, _minigun);
+            tumor.TumorBossLogic(gameTime, player, minigun, minigunEnd);
 
 
             player.PlayerMovement(gameTime, player, cancerousCell);
