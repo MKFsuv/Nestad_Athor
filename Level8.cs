@@ -24,7 +24,7 @@ namespace Nestad_Athor
             Rectangle Door2 = new Rectangle(1779, 270, 21, 540);
             Rectangle PlayerHitbox = new Rectangle((int)player.x, (int)player.y, 50, 50);
 
-
+            
 
 
             player.PlayerMovement(gameTime, player, cancerousCell);
