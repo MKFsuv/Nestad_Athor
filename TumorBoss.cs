@@ -49,7 +49,7 @@ namespace Nestad_Athor
 
         public Rectangle Hitbox => new Rectangle((int)x, (int)y, Size, Size);
 
-        public void TumorBossLogic(GameTime gameTime, Player player, SoundEffect minigun, SoundEffect minigunEnd, SoundEffectInstance _minigun)
+        public void TumorBossLogic(GameTime gameTime, Player player, SoundEffect minigun, SoundEffect minigunEnd)
         {
             float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
             Rectangle playerHitbox = new Rectangle((int)player.x, (int)player.y, 50, 50);
@@ -87,9 +87,7 @@ namespace Nestad_Athor
                     {
                         shootTimer = ShootInterval;
                         FireTear(player);
-                        _minigun.Play();
-                        _minigun.IsLooped = true;
-                        _minigun.Volume = 0.5f;
+                        //minigun.Play();
                     }
 
                     // SHwooooooooooooooooooooooooooooooooooot just ended: start the pause before the next attack
