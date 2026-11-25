@@ -76,7 +76,7 @@ namespace Nestad_Athor
 
             if (Alive)
             {
-                // Tear volley in progress
+                // Tear shoots
                 if (tearAttackTimeLeft > 0f)
                 {
                     tearAttackTimeLeft -= deltaTime;
@@ -88,7 +88,7 @@ namespace Nestad_Athor
                         FireTear(player);
                     }
 
-                    // Volley just ended: start the pause before the next attack
+                    // SHwooooooooooooooooooooooooooooooooooot just ended: start the pause before the next attack
                     if (tearAttackTimeLeft <= 0f)
                     {
                         attackCooldown = AttackDelay;
@@ -103,7 +103,7 @@ namespace Nestad_Athor
                     {
                         if (random.Next(2) == 0)
                         {
-                            // Attack 1: tear volley
+                            // Attack 1: tear shotss
                             tearAttackTimeLeft = TearAttackDuration;
                             shootTimer = 0f;
                         }
@@ -159,7 +159,7 @@ namespace Nestad_Athor
                     ball.Velocity.Y = -Math.Abs(ball.Velocity.Y);
                 }
 
-                // Uses the player's invincibility pause so a ball can't hit every frame
+                
                 if (ball.Hitbox.Intersects(playerHitbox) && player.hitCooldown <= 0f)
                 {
                     player.Health -= 10;

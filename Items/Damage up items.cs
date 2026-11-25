@@ -31,6 +31,7 @@ namespace Nestad_Athor.Items
             {
 
                 player.Damage += 10;
+                player.Health = 100;
                 damage.ItemPickedUp = true;
 
             }
