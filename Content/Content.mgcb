@@ -106,3 +106,17 @@
 /processorParam:Version=3.8.6.0
 /build:Text/StartScreenText.spritefont
 
+#begin TumorBoss/SFX/Minigun.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/processorParam:Version=3.8.6.0
+/build:TumorBoss/SFX/Minigun.wav
+
+#begin TumorBoss/SFX/MinigunEnd.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/processorParam:Version=3.8.6.0
+/build:TumorBoss/SFX/MinigunEnd.wav
+

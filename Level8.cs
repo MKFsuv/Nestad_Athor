@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Nestad_Athor.Items;
 using System;
@@ -19,7 +20,9 @@ namespace Nestad_Athor
             Player player, 
             CancerousCell cancerousCell, 
             Damage_up_items damage, 
-            TumorBoss tumor)
+            TumorBoss tumor,
+            SoundEffect minigun,
+            SoundEffect minigunEnd)
         {
 
             Rectangle Level2Wall1 = new Rectangle(0, 0, 1800, 20);
@@ -31,7 +34,7 @@ namespace Nestad_Athor
             Rectangle Door2 = new Rectangle(1779, 270, 21, 540);
             Rectangle PlayerHitbox = new Rectangle((int)player.x, (int)player.y, 50, 50);
 
-            tumor.TumorBossLogic(gameTime, player);
+            tumor.TumorBossLogic(gameTime, player, minigun, minigunEnd);
 
 
             player.PlayerMovement(gameTime, player, cancerousCell);
