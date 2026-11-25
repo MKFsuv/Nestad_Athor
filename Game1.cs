@@ -51,6 +51,7 @@ namespace Nestad_Athor
             _graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
+            Window.AllowAltF4 = true;
 
             _graphics.PreferredBackBufferWidth = 1800;
             _graphics.PreferredBackBufferHeight = 1080;
