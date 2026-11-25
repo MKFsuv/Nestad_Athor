@@ -189,7 +189,7 @@ namespace Nestad_Athor
                     Level7.Level7Update(this, gameTime, player, cancerousCell, damage);
                     break;
                 case 8:
-                    Level8.Level8Update(this, gameTime, player, cancerousCell, damage, tumor, minigun, minigunEnd, _minigun);
+                    Level8.Level8Update(this, gameTime, player, cancerousCell, damage, tumor, minigun, minigunEnd);
                     break;
             }
 
