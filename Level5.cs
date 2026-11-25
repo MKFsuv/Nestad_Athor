@@ -68,7 +68,7 @@ namespace Nestad_Athor
 
             damage.ChunkofFleshDraw(game, spriteBatch, damage, chunkofflesh);
 
-            player.PlayerDrawn(game, spriteBatch, playerTexture, game.HealthBarTexture, PlayerAttackTexture, player);
+            player.PlayerDrawn(game, spriteBatch, playerTexture, game.chemoDead, game.HealthBarTexture, PlayerAttackTexture, player);
             
         }
 

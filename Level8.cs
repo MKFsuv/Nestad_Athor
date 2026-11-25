@@ -68,7 +68,7 @@ namespace Nestad_Athor
 
             tumor.TumorBossDraw(game, spriteBatch, tumorBossTexture);
 
-            player.PlayerDrawn(game, spriteBatch, playerTexture, game.HealthBarTexture, PlayerAttackTexture, player);
+            player.PlayerDrawn(game, spriteBatch, playerTexture, game.chemoDead, game.HealthBarTexture, PlayerAttackTexture, player);
 
         }
 

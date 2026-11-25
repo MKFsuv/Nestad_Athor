@@ -1,4 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
+using Microsoft.Xna.Framework.Media;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
@@ -36,6 +38,7 @@ namespace Nestad_Athor
         public Vector2 EndRollPos;
         public float LevelTransitionCooldown = 0f;
         public int Damage = 10;
+        public bool hasPlayed = true;
 
         public Rectangle AttackHitbox
         {
@@ -54,11 +57,18 @@ namespace Nestad_Athor
         }
 
         //Code that draws the player
-        public void PlayerDrawn(Game1 game, SpriteBatch spriteBatch, Texture2D playerAttackTexture, Texture2D HealthBarTexture, Texture2D playerTexture, Player player)
+        public void PlayerDrawn(Game1 game, SpriteBatch spriteBatch, Texture2D playerAttackTexture, SoundEffect chemoDead, Texture2D HealthBarTexture, Texture2D playerTexture, Player player)
         {
             spriteBatch.Begin();
 
             spriteBatch.Draw(playerTexture, new Rectangle((int)player.x, (int)player.y, 50, 50), player.livingStatus);
+
+            if (player.Health <= 0 && hasPlayed == true) //play audio when dead
+            {
+                chemoDead.Play();
+                hasPlayed = false;
+            }
+
 
             if (player.IsAttacking)
             {
@@ -104,7 +114,10 @@ namespace Nestad_Athor
             if (player.Health <= 0) //change color when dead
             {
                 player.livingStatus = Color.Black;
+
             }
+
+
 
             bool AttackHits(Player p, Rectangle target)
             {
