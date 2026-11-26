@@ -91,7 +91,7 @@ namespace Nestad_Athor
 
             cancerousCellTexture = Content.Load<Texture2D>("BadGuys//CancerousCell");
 
-            LevelWalls = Content.Load<Texture2D>("Assets//Walls");
+            LevelWalls = Content.Load<Texture2D>("Assets//Wall");
 
             Door = new Texture2D(GraphicsDevice, 1, 1);
             Door.SetData(new[] { Color.White });

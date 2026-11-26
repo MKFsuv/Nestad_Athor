@@ -62,10 +62,12 @@ namespace Nestad_Athor
             spriteBatch.Begin();
 
             spriteBatch.Draw(LevelWalls, new Rectangle(0, 0, 1800, 1080), Color.White);
+            float rot = MathHelper.PiOver2;
+
+            spriteBatch.Draw(LevelWalls, new Rectangle(0, 0, 1800, 1080), Color.White);
             spriteBatch.Draw(LevelWalls, new Rectangle(0, 0, 1800, 20), Color.DarkRed);
-            spriteBatch.Draw(LevelWalls, new Rectangle(0, 0, 20, 1080), Color.DarkRed);
-            spriteBatch.Draw(LevelWalls, new Rectangle(1780, 0, 20, 1080), Color.DarkRed);
-            spriteBatch.Draw(LevelWalls, new Rectangle(0, 1060, 1800, 20), Color.DarkRed);
+            spriteBatch.Draw(LevelWalls, new Rectangle(20, 0, 1080, 20), null, Color.DarkRed, rot, Vector2.Zero, SpriteEffects.None, 0f);
+            spriteBatch.Draw(LevelWalls, new Rectangle(1800, 0, 1080, 20), null, Color.DarkRed, rot, Vector2.Zero, SpriteEffects.None, 0f);
             //Door
 
             spriteBatch.Draw(Door, new Rectangle(0, 270, 21, 540), Color.MediumVioletRed);
