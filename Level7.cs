@@ -17,7 +17,7 @@ namespace Nestad_Athor
             GameTime gameTime, 
             Player player, 
             CancerousCell cancerousCell, 
-            Damage_up_items damage)
+            Allstatsup statup)
         {
 
             Rectangle Level2Wall1 = new Rectangle(0, 0, 1800, 20);
@@ -30,7 +30,7 @@ namespace Nestad_Athor
             Rectangle PlayerHitbox = new Rectangle((int)player.x, (int)player.y, 50, 50);
 
 
-
+            Allstatsup.AllStatsUpLogic(player, statup);
 
             player.PlayerMovement(gameTime, player, cancerousCell);
 
@@ -58,7 +58,7 @@ namespace Nestad_Athor
             Texture2D chunkofflesh, 
             Texture2D PlayerAttackTexture, 
             Damage_up_items damage, 
-            Texture2D Door)
+            Texture2D Door, Allstatsup statup, Texture2D StatupItem)
 
         {
 
@@ -76,9 +76,9 @@ namespace Nestad_Athor
             spriteBatch.Draw(Door, new Rectangle(1779, 270, 21, 540), Color.MediumVioletRed);
 
             spriteBatch.End();
+            
 
-
-
+            Allstatsup.AllStatsUpDraw(game, spriteBatch, StatupItem, statup);
 
             player.PlayerDrawn(game, 
                 spriteBatch, 

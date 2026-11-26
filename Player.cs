@@ -26,7 +26,7 @@ namespace Nestad_Athor
         public float attackCooldown = 5f;
         public float Health = 100f;
         public Color livingStatus = Color.Gold;
-        public float hitCooldown = 0f;
+        public float hitCooldown = 3f;
         public float HitCooldownDuration = 1f;
         public bool hasHitThisSwing = false;
         public bool IsRolling = false;

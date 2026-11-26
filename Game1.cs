@@ -18,7 +18,7 @@ namespace Nestad_Athor
         Tears tears = new Tears(0, 0);
         Player player = new Player();
         Damage_up_items damage = new Damage_up_items();
-
+        Allstatsup statup = new Allstatsup();
         TumorBoss tumor = new TumorBoss();
 
         Spitters spitter = new Spitters(1000, 400);
@@ -38,6 +38,7 @@ namespace Nestad_Athor
         SpriteBatch spriteBatch;
         Texture2D LevelWalls;
         public Texture2D tumorBossTexture;
+        public Texture2D StatupItem;
         Texture2D playerTexture;
         public Texture2D cancerousCellTexture;
         Texture2D Door;
@@ -82,6 +83,9 @@ namespace Nestad_Athor
             // List of the creating of Textures
             playerTexture = new Texture2D(GraphicsDevice, 1, 1);
             playerTexture.SetData(new[] { Color.White });
+
+            StatupItem = new Texture2D(GraphicsDevice, 1, 1);
+            StatupItem.SetData(new[] { Color.White });
 
             chemoDead = Content.Load<SoundEffect>("Chemo//SFX//chemoDeath");
 
@@ -183,7 +187,7 @@ namespace Nestad_Athor
                     Level6.Level6Update(this, gameTime, player, cancerousCell, spitter3, damage, spitter2, tears);
                     break;
                 case 7:
-                    Level7.Level7Update(this, gameTime, player, cancerousCell, damage);
+                    Level7.Level7Update(this, gameTime, player, cancerousCell, statup);
                     break;
                 case 8:
                     Level8.Level8Update(this, gameTime, player, cancerousCell, damage, tumor, minigun, minigunEnd);
@@ -229,7 +233,8 @@ namespace Nestad_Athor
                         spitter2, spitter3, tears);
                     break;
                 case 7:
-                    Level7.Level7Drawn(this, spriteBatch, playerTexture, LevelWalls, player, cancerousCell, cancerousCellTexture, PlayerAttackTexture, damage, Door);
+                    Level7.Level7Drawn(this, spriteBatch, playerTexture, LevelWalls, player, cancerousCell, cancerousCellTexture, PlayerAttackTexture, damage, Door,
+                        statup,  StatupItem);
                     break;
                 case 8:
                     Level8.Level8Drawn(this, spriteBatch, playerTexture, LevelWalls, player, cancerousCell, cancerousCellTexture, PlayerAttackTexture, damage, Door, 
