@@ -15,8 +15,8 @@ namespace Nestad_Athor
         public static void Level6Update(Game1 game, 
             GameTime gameTime, 
             Player player, 
-            CancerousCell cancerousCell, 
-            Damage_up_items damage)
+            CancerousCell cancerousCell, Spitters spitter3 , 
+            Damage_up_items damage, Spitters spitter2, Tears tears)
 
         {
 
@@ -29,8 +29,9 @@ namespace Nestad_Athor
             Rectangle Door2 = new Rectangle(1779, 270, 21, 540);
             Rectangle PlayerHitbox = new Rectangle((int)player.x, (int)player.y, 50, 50);
 
+            Spitters.SpittersMovement(game, gameTime, player, spitter2, tears);
+            Spitters.SpittersMovement(game, gameTime, player, spitter3, tears);
 
-         
 
             player.PlayerMovement(gameTime, player, cancerousCell);
 
@@ -58,7 +59,7 @@ namespace Nestad_Athor
             Texture2D chunkofflesh, 
             Texture2D PlayerAttackTexture, 
             Damage_up_items damage, 
-            Texture2D Door)
+            Texture2D Door, Spitters spitter2, Spitters spitter3, Tears tears)
 
         {
 
@@ -77,8 +78,8 @@ namespace Nestad_Athor
 
             spriteBatch.End();
 
-
-            
+            Spitters.SpittersDrawn(game, spriteBatch, game.SpittersTexture, spitter2, tears);
+            Spitters.SpittersDrawn(game, spriteBatch, game.SpittersTexture, spitter3, tears);
 
             player.PlayerDrawn(game, 
                 spriteBatch, 

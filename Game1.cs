@@ -22,6 +22,8 @@ namespace Nestad_Athor
         TumorBoss tumor = new TumorBoss();
 
         Spitters spitter = new Spitters(1000, 400);
+        Spitters spitter2 = new Spitters(1000, 200);
+        Spitters spitter3 = new Spitters(1000, 600);
         
         CancerousCell cancerousCell = new CancerousCell(1200, 400, 200);
         CancerousCell cancerousCell2 = new CancerousCell(1000, 400, 200);
@@ -82,11 +84,6 @@ namespace Nestad_Athor
             playerTexture.SetData(new[] { Color.White });
 
             chemoDead = Content.Load<SoundEffect>("Chemo//SFX//chemoDeath");
-
-            minigun = Content.Load<SoundEffect>("TumorBoss//SFX//Minigun");
-            SoundEffectInstance _minigun = minigun.CreateInstance();
-
-            minigunEnd = Content.Load<SoundEffect>("TumorBoss//SFX//MinigunEnd");
 
             cancerousCellTexture = Content.Load<Texture2D>("BadGuys//CancerousCell");
 
@@ -183,7 +180,7 @@ namespace Nestad_Athor
                     Level5.Level5Update(this, gameTime, player, cancerousCell, damage);
                     break;
                 case 6:
-                    Level6.Level6Update(this, gameTime, player, cancerousCell, damage);
+                    Level6.Level6Update(this, gameTime, player, cancerousCell, spitter3, damage, spitter2, tears);
                     break;
                 case 7:
                     Level7.Level7Update(this, gameTime, player, cancerousCell, damage);
@@ -228,13 +225,15 @@ namespace Nestad_Athor
                     Level5.Level5Drawn(this, spriteBatch, playerTexture, LevelWalls, player, cancerousCell, cancerousCellTexture, PlayerAttackTexture, damage, Door);
                     break;
                 case 6:
-                    Level6.Level6Drawn(this, spriteBatch, playerTexture, LevelWalls, player, cancerousCell, cancerousCellTexture, PlayerAttackTexture, damage, Door);
+                    Level6.Level6Drawn(this, spriteBatch, playerTexture, LevelWalls, player, cancerousCell, cancerousCellTexture, PlayerAttackTexture, damage, Door, 
+                        spitter2, spitter3, tears);
                     break;
                 case 7:
                     Level7.Level7Drawn(this, spriteBatch, playerTexture, LevelWalls, player, cancerousCell, cancerousCellTexture, PlayerAttackTexture, damage, Door);
                     break;
                 case 8:
-                    Level8.Level8Drawn(this, spriteBatch, playerTexture, LevelWalls, player, cancerousCell, cancerousCellTexture, PlayerAttackTexture, damage, Door, tumorBossTexture, tumor);
+                    Level8.Level8Drawn(this, spriteBatch, playerTexture, LevelWalls, player, cancerousCell, cancerousCellTexture, PlayerAttackTexture, damage, Door, 
+                        tumorBossTexture, tumor);
                     break;
             }
             

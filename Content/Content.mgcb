@@ -26,19 +26,6 @@
 /processorParam:Version=3.8.6.0
 /build:Assets/Walls.png
 
-#begin BadGuys/9784c034-3052-43b2-86c5-4913a7e215c4-1695927406559.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/processorParam:Version=3.8.6.0
-/build:BadGuys/9784c034-3052-43b2-86c5-4913a7e215c4-1695927406559.png;BadGuys/CancerousCell2.png
-
 #begin BadGuys/CancerousCell.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -105,18 +92,4 @@
 /processorParam:TextureFormat=Compressed
 /processorParam:Version=3.8.6.0
 /build:Text/StartScreenText.spritefont
-
-#begin TumorBoss/SFX/Minigun.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/processorParam:Version=3.8.6.0
-/build:TumorBoss/SFX/Minigun.wav
-
-#begin TumorBoss/SFX/MinigunEnd.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/processorParam:Version=3.8.6.0
-/build:TumorBoss/SFX/MinigunEnd.wav
 
