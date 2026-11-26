@@ -30,7 +30,7 @@ namespace Nestad_Athor.Items
                 player.Damage += 10;
                 player.speed = 700;
                 player.Health = 100;
-                player.attackCooldown = 0f;
+                player.playerAttackCooldown = 0f;
                 statup.ItemPickedUp = true;
 
             }

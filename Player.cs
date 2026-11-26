@@ -24,6 +24,7 @@ namespace Nestad_Athor
         public bool IsAttacking = false;
         public float attackTimer = 1f;
         public float attackCooldown = 5f;
+        public float playerAttackCooldown = 1f;
         public float Health = 100f;
         public Color livingStatus = Color.Gold;
         public float hitCooldown = 3f;
@@ -224,7 +225,7 @@ namespace Nestad_Athor
 
             if (mouse.LeftButton == ButtonState.Pressed && 
                !player.IsAttacking && player.Health > 0 && 
-               attackCooldown >= 1f)
+               attackCooldown >= playerAttackCooldown)
             {
                 player.IsAttacking = true;
                 player.attackTimer = 0.5f;
