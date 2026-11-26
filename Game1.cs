@@ -160,7 +160,19 @@ namespace Nestad_Athor
             {
                 Level = 5;
             }
+            else if (keyboardState.IsKeyDown(Keys.NumPad5))
+            {
+                Level = 5;
+            }
             else if (keyboardState.IsKeyDown(Keys.NumPad6))
+            {
+                Level = 6;
+            }
+            else if (keyboardState.IsKeyDown(Keys.NumPad7))
+            {
+                Level = 7;
+            }
+            else if (keyboardState.IsKeyDown(Keys.NumPad8))
             {
                 Level = 8;
             }
